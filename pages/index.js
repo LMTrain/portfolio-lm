@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/shared/Header'
 
 
 
@@ -13,11 +14,7 @@ class Index extends React.Component {
         return (
             <div>
                <h1> I am Index Page </h1>
-               <a href="/">Home</a>
-               <a href="/about">About</a>
-               <a href="/portfolios">Portfolios</a>
-               <a href="/blogs">Blogs</a>
-               <a href="/cv">CV</a>
+               <Header />
             </div>
         )
 
