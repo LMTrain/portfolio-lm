@@ -8,8 +8,11 @@ class Header extends React.Component {
         return (
             <>  
                 <p>{ title }</p>
-                {this.props.children}          
+                {this.props.children}
+                         
                <Link href="/">
+                   {/* INLINE STYLING */}
+                   {/* <a style={{'fontSize': '30px', 'fontWeight': 'bold'}}>Home</a> */}
                     <a>Home</a>
                </Link>
                <Link href="/about">
@@ -24,6 +27,15 @@ class Header extends React.Component {
                <Link href="/cv">
                     <a>CV</a>
                </Link>
+               <style>
+                   {
+                       `
+                       a{
+                            font-size: 20px;
+                       }
+                       `
+                   }
+               </style>
             </>
 
         )

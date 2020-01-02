@@ -1,5 +1,5 @@
 import React from 'react';
-// import Header from '../components/shared/Header';
+import '../styles/main.scss';
 import BaseLayout from '../components/layout/BaseLayout';
 
 
@@ -14,7 +14,8 @@ class Index extends React.Component {
     render() {
         return (
             <BaseLayout>
-               <h1> I am Index Page </h1>               
+               <h1> I am Index Page </h1>
+               <div className='customClass'> Customize</div>               
             </BaseLayout>
         )
 
