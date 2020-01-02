@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from '../components/shared/Header'
+import BaseLayout from '../components/layout/BaseLayout';
 
 class Blogs extends React.Component {
 
     render() {
         return (
-            <>
-                <div>I am a Blogs</div>
-                <Header />
-            </>
+            <BaseLayout>
+                <h1>I am a Blogs</h1>              
+            </BaseLayout>
         )
     }
 }

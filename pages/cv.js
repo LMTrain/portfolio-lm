@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from '../components/shared/Header'
+import BaseLayout from '../components/layout/BaseLayout';
 
 class Cv extends React.Component {
 
     render() {
         return (
-            <>
-                <div>I am a CVsss</div>
-                <Header />
-            </>
+            <BaseLayout>
+                <h1>I am a CVsss</h1>             
+            </BaseLayout>
         )
     }
 }
