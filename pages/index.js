@@ -15,7 +15,7 @@ class Index extends SuperComponent {
         // .catch(err => console.error(err))
         let userData = {};
         try {
-            const response = await axios.get('https://api.walmartlabs.com/v1/search?&apiKey=vng9pukufs97mcyyjs5ps266&query=BELT&format=json');
+            const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
             // console.log(response.data)
             userData = response.data;
         } catch(err) {
@@ -63,7 +63,7 @@ class Index extends SuperComponent {
                <h1> I am Index Page </h1>
                <div className='customClass'> Customize</div>
                <h2>{title}</h2>
-               <h2>{userData.items[0].name}</h2>
+               <h2>{userData[0].title}</h2>
                <button onClick={ this.updateTitle }>Change Title</button>            
             </BaseLayout>
         )
