@@ -7,12 +7,8 @@ import '../../styles/main.scss';
 class Header extends React.Component {
 
     render() {        
-        const title = this.props.title;
-        return (
-            <>  
-                <p>{ title }</p>
-                {this.props.children}
-
+         return (
+            <> 
                <Link href="/">
                    {/* INLINE STYLING */}
                    {/* <a style={{'fontSize': '30px', 'fontWeight': 'bold'}}>Home</a> */}
