@@ -1,10 +1,8 @@
 import React from 'react';
-import '../styles/main.scss';
+// import '../styles/main.scss';
 import BaseLayout from '../components/layout/BaseLayout';
 
 import { Button, Container} from 'reactstrap';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class Index extends React.Component {
@@ -13,12 +11,10 @@ class Index extends React.Component {
 
         return (
             <BaseLayout>
-                <Container>                
-                    <Button color="danger">Danger!</Button>
+                <Container> 
                 </Container>
             </BaseLayout>
         )
-
     }
 }
   export default Index;

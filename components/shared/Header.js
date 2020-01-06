@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {Link as NextLink} from '../../routes';
-
-import '../../styles/main.scss';
+// import {Link as NextLink} from '../../routes';
 
 class Header extends React.Component {
 
@@ -14,20 +12,25 @@ class Header extends React.Component {
                    {/* <a style={{'fontSize': '30px', 'fontWeight': 'bold'}}>Home</a> */}
                     <a>Home</a>
                </Link>
+
                <Link href="/about">
                     <a>About</a>
                </Link>
+
                <Link href="/portfolios">
                     <a>Portfolios</a>
                </Link>
+
                <Link href="/blogs">
                     <a>Blogs</a>
                </Link>
+
                <Link href="/cv">
                     <a>CV</a>
                </Link>
-               <NextLink route='test' params={{id: '2'}}>>Test 2</NextLink>
-               <NextLink route='/test/5' params={{id: '5'}}>>Test 5</NextLink>
+
+               {/* <NextLink route='test' params={{id: '2'}}>>Test 2</NextLink>
+               <NextLink route='/test/5' params={{id: '5'}}>>Test 5</NextLink> */}
                <style>
                    {
                        `
