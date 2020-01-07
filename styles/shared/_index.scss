@@ -15,7 +15,7 @@
   .main-section {
     top: 150px;
     width: 100%;
-    padding: 150px 0 0;
+    // padding: 150px 0 0;
   }
   
   .hero-section{
@@ -46,6 +46,7 @@
   .image {
     width: auto;
     max-width: 100%;
+   
   }
   
   .hero-welcome-text > h1 {
@@ -90,9 +91,13 @@
   }
   
   .background-image {
-    position: absolute;
+    background-size: cover;
+    // position: absolute;
     width: 1762px;
     height: 493px;
+    // position: absolute;
+    // width: 1762px;
+    // height: 493px;
   }
   
   .shadow-custom {

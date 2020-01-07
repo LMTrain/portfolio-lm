@@ -21,6 +21,7 @@ class Index extends React.Component {
                 <div className="main-section">
                     <div className="background-image">
                         <img src="/static/images/background-index.png" />
+                        {/* <img src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg" /> */}
                     </div>
                     <Container>
                         <Row>
@@ -35,6 +36,7 @@ class Index extends React.Component {
                                                 </div>
                                             </div>
                                             <img className="image" src="/static/images/section-1.png"/>
+                                            {/* <img className="image" src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg"/> */}
                                             <div className="shadow-custom">
                                                 <div className="shadow-inner"> </div>
                                             </div>
