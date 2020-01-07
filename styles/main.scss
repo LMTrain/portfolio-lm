@@ -1,13 +1,18 @@
 @import './shared/fonts';
 
+//PAGES
+@import './shared/index';
+
 html, body {
+    height:100%;
+    width:100%;
     font-family: 'Montserrat', 'Helvetica';
 }
 
-.customClass {
-    font-size: 35px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: red;
+.self-typed {
+    font-size: 28px;
     font-weight: bold;
-
+    letter-spacing: 2px;
+    color: white;
 }
+ 
