@@ -20,7 +20,7 @@ class Index extends React.Component {
             <BaseLayout className="cover">
                 <div className="main-section">
                     <div className="background-image">
-                        <img src="/static/images/background-index.png" />
+                        <img src="/static/images/lm.jpg" />
                         {/* <img src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg" /> */}
                     </div>
                     <Container>
