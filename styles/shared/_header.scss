@@ -15,6 +15,9 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: bold;
+      &:hover, &:focus {
+        color: #dba919;
+      }
     }
 
     &-item {
@@ -38,4 +41,8 @@
       }
     }
   }
+  .img-fluid {
+    max-width: 10%;
+    height: auto;
+}
 }

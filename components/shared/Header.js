@@ -56,6 +56,8 @@
 
 // export default Example;
 import React from 'react';
+// import { Circle } from 'react-shapes';
+import Image from 'react-bootstrap/Image'
 import Link from 'next/link';
 import {
   Collapse,
@@ -96,7 +98,11 @@ export default class Example extends React.Component {
 
                <div>
                     <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
-                         <NavbarBrand className="port-navbar-brand" href="/">Laycon Muriziq</NavbarBrand>
+                         <NavbarBrand className="port-navbar-brand" href="/">
+                         <Image src="../../static/images/linkedin1.jpg" roundedCircle fluid />
+                         {/* <Circle r={50} fill={{url:'https://lmtrain.github.io/lm-images/assets/images/futurecar17.jpg'}} stroke={{color:'white'}} strokeWidth={2} /> */}
+                              Laycon Muriziq
+                         </NavbarBrand>
                          <NavbarToggler onClick={this.toggle} />
                          <Collapse isOpen={this.state.isOpen} navbar>
                               <Nav className="ml-auto" navbar>

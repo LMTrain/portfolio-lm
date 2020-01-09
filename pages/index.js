@@ -20,10 +20,10 @@ class Index extends React.Component {
             <BaseLayout className="cover">
                 <div className="main-section">
                     <div className="background-image">
-                        {/* <img src="/static/images/lm.jpg" /> */}
+                        <img src="/static/images/background-index.png" />
                         {/* <img src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg" /> */}
                     </div>
-                    <Container>
+                    <Container>                       
                         <Row>
                             <Col md="6">
                                 <div className="hero-section">
@@ -35,8 +35,8 @@ class Index extends React.Component {
                                                     Have a look at my portfolio and job history.
                                                 </div>
                                             </div>
-                                            <img className="image" src="/static/images/section-1.png"/>
-                                            {/* <img className="image" src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg"/> */}
+                                            {/* <img className="image" src="/static/images/section-1.png"/> */}
+                                            <img className="image" src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg"/>
                                             <div className="shadow-custom">
                                                 <div className="shadow-inner"> </div>
                                             </div>
