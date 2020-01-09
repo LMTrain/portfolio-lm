@@ -1,0 +1,29 @@
+@import './shared/fonts';
+
+//PAGES
+@import './shared/index';
+
+//COMPONENTS
+@import './shared/header';
+
+html, body {
+    height:100%;
+    width:100%;
+    font-family: 'Montserrat', 'Helvetica';
+}
+
+.self-typed {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+}
+ 
+.absolute {
+    position: absolute;
+}
+
+.base-page {
+    padding-top: 150px;
+    color: white;
+}
