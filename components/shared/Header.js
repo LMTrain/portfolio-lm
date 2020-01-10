@@ -67,12 +67,25 @@ import {
   Nav,
   NavItem} from 'reactstrap';
 
-  const BsNavLink = (props) => {
-    const { route, title } = props;
-    return (
-         <Link href={route}>
-              <a className="nav-link port-navbar-link"> {title}</a>
-         </Link>
+
+const BsNavLink = (props) => {
+const { route, title } = props;
+return (
+     <Link href={route}>
+          <a className="nav-link port-navbar-link"> {title}</a>
+     </Link>
+     )
+}
+
+const Login = () => {
+     return (
+          <span className="nav-link port-navbar-link clickable">Login</span>
+     )
+}
+
+const Logout = () => {
+     return (
+          <span className="nav-link port-navbar-link clickable">Logout</span>
      )
 }
 
@@ -123,6 +136,12 @@ export default class Example extends React.Component {
                                    </NavItem>
                                    <NavItem className="port-navbar-item">
                                              <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
+                                   </NavItem>
+                                   <NavItem className="port-navbar-item">
+                                             <Login />                 
+                                   </NavItem>
+                                   <NavItem className="port-navbar-item">
+                                             <Logout />                 
                                    </NavItem>
                               
                               </Nav>           
