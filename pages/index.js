@@ -36,7 +36,7 @@ class Index extends React.Component {
                                                 </div>
                                             </div>
                                             {/* <img className="image" src="/static/images/section-1.png"/> */}
-                                            <img className="image" src="https://lmtrain.github.io/lm-images/assets/images/ls_field-cnn.jpg"/>
+                                            <img className="image" src="../static/images/supernova.webp"/>
                                             <div className="shadow-custom">
                                                 <div className="shadow-inner"> </div>
                                             </div>
@@ -47,7 +47,7 @@ class Index extends React.Component {
                             <Col md="6" className="hero-welcome-wrapper">
                                 <div className="hero-welcome-text">
                                     <h1>
-                                        Welcome to the portfolio website of Filip Jerga.
+                                        Welcome to the portfolio website of Laycon Muriziq.
                                         Get informed, collaborate and discover projects I was working on through the years!
                                     </h1>
                                 </div>

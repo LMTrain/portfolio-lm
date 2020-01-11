@@ -1,60 +1,3 @@
-// import React, { useState } from 'react';
-// import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-// import Link from 'next/link';
-
-// const BsNavLink = (props) => {
-//      const { route, title } = props;
-//      return (
-//           <Link href={route}>
-//                <a className="nav-link port-navbar-link"> {title}</a>
-//           </Link>
-//      )
-// }
-// const Example = (props) => {
-//   const [collapsed, setCollapsed] = useState(true);
-
-//   const toggleNavbar = () => setCollapsed(!collapsed);
-
-//   return (
-//     <div>
-//           <Navbar className="port-navbar port-default" absolute color="transparent" light>
-//                <NavbarBrand className="port-navbar-brand" >
-//                     <BsNavLink route="/" title="Laycon Muriziq" />
-//                </NavbarBrand>
-//                <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-//                <Collapse isOpen={!collapsed} navbar>
-//                     <Nav navbar>
-//                     <NavItem className="port-navbar-item">
-//                          <BsNavLink route="/" title="Home" />              
-//                     </NavItem>
-//                     <NavItem className="port-navbar-item">
-//                          <BsNavLink route="/about" title="About" />
-//                     {/* <NavLink href="/about">About</NavLink> */}
-//                     </NavItem>
-//                     <NavItem className="port-navbar-item">
-//                          <BsNavLink route="/portfolios" title="Portfolios" />
-//                     {/* <NavLink href="/portfolios">Portfolios</NavLink> */}
-//                     </NavItem>
-//                     <NavItem className="port-navbar-item">
-//                          <BsNavLink route="/blogs" title="Blogs" />
-//                     {/* <NavLink href="/blogs">Blogs</NavLink> */}
-//                     </NavItem>
-//                     <NavItem className="port-navbar-item">
-//                          <BsNavLink route="/cv" title="Resume" />
-//                     {/* <NavLink href="/cv">Resume</NavLink> */}
-//                     </NavItem>
-//                     <NavItem className="port-navbar-item">
-//                          <BsNavLink route="https://github.com/LMTrain" title="GitHub" />
-//                     {/* <NavLink href="https://github.com/LMTrain">GitHub</NavLink> */}
-//                     </NavItem>
-//                     </Nav>
-//                </Collapse>
-//           </Navbar>
-//     </div>
-//   );
-// }
-
-// export default Example;
 import React from 'react';
 // import { Circle } from 'react-shapes';
 import Image from 'react-bootstrap/Image'
@@ -66,6 +9,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem} from 'reactstrap';
+
+  import auth0 from '../../services/auth0';
 
 
 const BsNavLink = (props) => {
@@ -79,17 +24,17 @@ return (
 
 const Login = () => {
      return (
-          <span className="nav-link port-navbar-link clickable">Login</span>
+          <span onClick={auth0.login} className="nav-link port-navbar-link clickable">Login</span>
      )
 }
 
 const Logout = () => {
      return (
-          <span className="nav-link port-navbar-link clickable">Logout</span>
+          <span onClick={auth0.logout} className="nav-link port-navbar-link clickable">Logout</span>
      )
 }
 
-export default class Example extends React.Component {
+export default class Header extends React.Component {
     constructor(props) {
         super(props);
 
@@ -123,26 +68,30 @@ export default class Example extends React.Component {
                                         <BsNavLink route="/" title="Home" />              
                                    </NavItem>
                                    <NavItem className="port-navbar-item">
-                                             <BsNavLink route="/about" title="About" />                
+                                        <BsNavLink route="/about" title="About" />                
                                    </NavItem>
                                    <NavItem className="port-navbar-item">
-                                             <BsNavLink route="/portfolios" title="Portfolios" />                  
+                                        <BsNavLink route="/portfolios" title="Portfolios" />                  
                                    </NavItem>
                                    <NavItem className="port-navbar-item">
-                                             <BsNavLink route="/blogs" title="Blogs" />                 
+                                        <BsNavLink route="/blogs" title="Blogs" />                 
                                    </NavItem>
                                    <NavItem className="port-navbar-item">
-                                             <BsNavLink route="/cv" title="Resume" />                 
+                                        <BsNavLink route="/cv" title="Resume" />                 
                                    </NavItem>
                                    <NavItem className="port-navbar-item">
-                                             <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
+                                        <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
                                    </NavItem>
-                                   <NavItem className="port-navbar-item">
-                                             <Login />                 
-                                   </NavItem>
-                                   <NavItem className="port-navbar-item">
-                                             <Logout />                 
-                                   </NavItem>
+                                   { !auth0.isAuthenticated() &&
+                                        <NavItem className="port-navbar-item">
+                                                  <Login />                 
+                                        </NavItem>
+                                   }
+                                   { auth0.isAuthenticated() &&
+                                        <NavItem className="port-navbar-item">
+                                                  <Logout />                 
+                                        </NavItem>
+                                   }
                               
                               </Nav>           
                          </Collapse>
