@@ -1,6 +1,7 @@
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 class Auth0 {
 
@@ -15,7 +16,7 @@ class Auth0 {
         this.login = this.login.bind(this);
         this.logout =this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
-        this.isAuthenticated = this.isAuthenticated.bind(this);
+        
 
     }
 
@@ -58,35 +59,62 @@ class Auth0 {
             
     }
 
-    isAuthenticated() {
-        // Check whether the current time is past the Access Token's exoiry time
-        const expiresAt = Cookies.getJSON('expiresAt');
-        // console.log(new Date().getTime() < expiresAt);
-        return new Date().getTime() < expiresAt;   
+    async getJWKS() {
+        const res = await axios.get('https://dev-mt2g3wp7.auth0.com/.well-known/jwks.json');
+        const jwks = res.data;
+        console.log("THIS is JWKS res: ", jwks)
+        return jwks;
     }
 
-    verifyToken(token) {
+    // isAuthenticated() {
+    //     // Check whether the current time is past the Access Token's exoiry time
+    //     const expiresAt = Cookies.getJSON('expiresAt');
+    //     // console.log(new Date().getTime() < expiresAt);
+    //     return new Date().getTime() < expiresAt;   
+    // }
+
+    async verifyToken(token) {
         if (token) {
-            const decodedToken = jwt.decode(token);
-            console.log("THIS IS FROM jwt.io :", jwt.decode(token));
-            console.log("NAME : ", decodedToken.nickname);
-            console.log("PICTURE : ", decodedToken.picture);
-            const expiresAt = decodedToken.exp * 1000;
+            const decodedToken = jwt.decode(token, { complete: true});
 
-            return (decodedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+            if (!decodedToken) { return undefined; }
+
+            const jwks = await this.getJWKS();
+            const jwk = jwks.keys[0];
+            console.log("THIS IS jwk :", jwk);
+            //BUILD CERTIFICATE
+            let cert = jwk.x5c[0];
+            cert = cert.match(/.{1,64}/g).join('\n');
+            cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
+            //
+            if (jwk.kid === decodedToken.header.kid) {
+                try {
+                    const verifiedToken = jwt.verify(token, cert);
+                    const expiresAt = decodedToken.exp * 1000;
+
+                    return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
+
+                }catch(err) {
+                    return undefined;
+                }
+            }
         }
+        //THESE ARE FOR ME
+        console.log("THIS IS FROM jwt.io :", jwt.decode(token));
+        console.log("NAME : ", decodedToken.nickname);
+        console.log("PICTURE : ", decodedToken.picture);            
 
-        return undefined;
+        return undefined;    
     }
 
-    clientAuth() {
+    async clientAuth() {
         const token = Cookies.getJSON('jwt');
-        const verifiedToken = this.verifyToken(token);
+        const verifiedToken = await this.verifyToken(token);
 
-        return token;
+        return verifiedToken;
     }
 
-    serverAuth(req) {
+    async serverAuth(req) {
         if (req.headers.cookie) {
 
             const tokenCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
@@ -105,7 +133,7 @@ class Auth0 {
             if (!tokenCookie) { return undefined };
 
             const token = tokenCookie.split('=')[1];
-            const verifiedToken = this.verifyToken(token);
+            const verifiedToken = await this.verifyToken(token);
 
             return verifiedToken;
         }

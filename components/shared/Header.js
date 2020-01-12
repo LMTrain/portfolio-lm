@@ -59,8 +59,11 @@ export default class Header extends React.Component {
                     <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
                          <NavbarBrand className="port-navbar-brand" href="/">
                          <Image src="../../static/images/linkedin1.jpg" roundedCircle fluid />
+                         Laycon Muriziq
                          {/* <Circle r={50} fill={{url:'https://lmtrain.github.io/lm-images/assets/images/futurecar17.jpg'}} stroke={{color:'white'}} strokeWidth={2} /> */}
-                              Laycon Muriziq
+                         {/* { isAuthenticated &&
+                              <span>{user.name}</span>
+                         } */}
                          </NavbarBrand>
                          <NavbarToggler onClick={this.toggle} />
                          <Collapse isOpen={this.state.isOpen} navbar>
