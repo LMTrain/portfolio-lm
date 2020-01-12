@@ -52,8 +52,9 @@ export default class Header extends React.Component {
 
      render() {
 
-          return (
+          const { isAuthenticated } = this.props;
 
+          return (
                <div>
                     <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
                          <NavbarBrand className="port-navbar-brand" href="/">
@@ -82,12 +83,12 @@ export default class Header extends React.Component {
                                    <NavItem className="port-navbar-item">
                                         <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
                                    </NavItem>
-                                   { !auth0.isAuthenticated() &&
+                                   { !isAuthenticated &&
                                         <NavItem className="port-navbar-item">
                                                   <Login />                 
                                         </NavItem>
                                    }
-                                   { auth0.isAuthenticated() &&
+                                   { isAuthenticated &&
                                         <NavItem className="port-navbar-item">
                                                   <Logout />                 
                                         </NavItem>

@@ -18,7 +18,7 @@ class Auth0 {
 
     }
 
-    handleAuthentication() {
+    handleAuthentication() {     
         return new Promise((resolve, reject) => {
             this.auth0.parseHash((err, authResult) => {
                 if (authResult && authResult.accessToken && authResult.idToken) {
@@ -32,7 +32,7 @@ class Auth0 {
         })
     }
 
-    setSession() {
+    setSession(authResult) {
         // Set the time that the Access Token will expire at
         const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
         // localStorage.setItem('access_token', authResult.accessToken);
@@ -52,8 +52,8 @@ class Auth0 {
         })
     }
 
-    login() {
-        this.auth0.authortize();
+    login() {        
+        this.auth0.authorize();
             
     }
 
