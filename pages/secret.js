@@ -14,6 +14,7 @@ class Secret extends React.Component {
     
     render() {  
 
+        //....
         const { superSecretValue } = this.props;
 
         return(
