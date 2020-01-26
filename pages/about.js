@@ -2,7 +2,6 @@ import React from 'react'
 import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
 
-
 class About extends React.Component {
     render () {
         return (

@@ -16,8 +16,7 @@ class Auth0 {
         this.login = this.login.bind(this);
         this.logout =this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
-        
-
+        this.isAuthenticated = this.isAuthenticated.bind(this);
     }
 
     handleAuthentication() {     
@@ -66,12 +65,12 @@ class Auth0 {
         return jwks;
     }
 
-    // isAuthenticated() {
-    //     // Check whether the current time is past the Access Token's exoiry time
-    //     const expiresAt = Cookies.getJSON('expiresAt');
-    //     // console.log(new Date().getTime() < expiresAt);
-    //     return new Date().getTime() < expiresAt;   
-    // }
+    isAuthenticated() {
+        // Check whether the current time is past the Access Token's exoiry time
+        const expiresAt = Cookies.getJSON('expiresAt');
+        // console.log(new Date().getTime() < expiresAt);
+        return new Date().getTime() < expiresAt;   
+    }
 
     async verifyToken(token) {
         if (token) {
@@ -100,9 +99,9 @@ class Auth0 {
             }
         }
         //THESE ARE FOR ME
-        console.log("THIS IS FROM jwt.io :", jwt.decode(token));
-        console.log("NAME : ", decodedToken.nickname);
-        console.log("PICTURE : ", decodedToken.picture);            
+        // console.log("THIS IS FROM jwt.io :", jwt.decode(token));
+        // console.log("NAME : ", decodedToken.nickname);
+        // console.log("PICTURE : ", decodedToken.picture);            
 
         return undefined;    
     }

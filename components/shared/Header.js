@@ -10,7 +10,7 @@ import {
   Nav,
   NavItem} from 'reactstrap';
 
-  import auth0 from '../../services/auth0';
+import auth0 from '../../services/auth0';
 
 
 const BsNavLink = (props) => {
@@ -86,14 +86,14 @@ export default class Header extends React.Component {
                                    <NavItem className="port-navbar-item">
                                         <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
                                    </NavItem>
-                                   { !isAuthenticated &&
+                                   { !auth0.isAuthenticated() &&
                                         <NavItem className="port-navbar-item">
-                                                  <Login />                 
+                                             <Login />                 
                                         </NavItem>
                                    }
-                                   { isAuthenticated &&
+                                   { auth0.isAuthenticated() &&
                                         <NavItem className="port-navbar-item">
-                                                  <Logout />                 
+                                             <Logout />                 
                                         </NavItem>
                                    }
                               
