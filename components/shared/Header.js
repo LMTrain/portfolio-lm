@@ -86,16 +86,26 @@ export default class Header extends React.Component {
                                    <NavItem className="port-navbar-item">
                                         <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
                                    </NavItem>
-                                   { !auth0.isAuthenticated() &&
+                               
+                                        <NavItem className="port-navbar-item">
+                                             <Login />                 
+                                        </NavItem>
+                                   
+                                  
+                                        <NavItem className="port-navbar-item">
+                                             <Logout />                 
+                                        </NavItem>
+                                 
+                                   {/* { isAuthenticated &&
                                         <NavItem className="port-navbar-item">
                                              <Login />                 
                                         </NavItem>
                                    }
-                                   { auth0.isAuthenticated() &&
+                                   { isAuthenticated &&
                                         <NavItem className="port-navbar-item">
                                              <Logout />                 
                                         </NavItem>
-                                   }
+                                   } */}
                               
                               </Nav>           
                          </Collapse>

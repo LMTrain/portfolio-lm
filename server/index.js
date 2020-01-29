@@ -36,7 +36,13 @@ app.prepare()
     
     server.get('*', (req, res) => {       
         return handle(req, res)
-    }) 
+    })
+    
+    server.use(function (err, req, res, next) {
+        if (err.name === 'UnauthorizedError') {
+          res.status(401).send({title: 'Unauthorized', detail: 'unauthorized Access!'});
+        }
+    });
 
     server.use(handle).listen(3000, (err) => {
         if (err) throw err
