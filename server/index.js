@@ -28,6 +28,8 @@ app.prepare()
 
 
     server.get('/api/v1/secret', authservice.checkJWT, (req, res) => {
+        // console.log('--------------CONSOLLING USER-------------');
+        // console.log(req.user);
         return res.json(secretData);
     })
 

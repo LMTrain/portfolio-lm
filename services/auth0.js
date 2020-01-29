@@ -16,7 +16,7 @@ class Auth0 {
         this.login = this.login.bind(this);
         this.logout =this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
-        this.isAuthenticated = this.isAuthenticated.bind(this);
+        // this.isAuthenticated = this.isAuthenticated.bind(this);
     }
 
     handleAuthentication() {     
@@ -61,26 +61,27 @@ class Auth0 {
     async getJWKS() {
         const res = await axios.get('https://dev-mt2g3wp7.auth0.com/.well-known/jwks.json');
         const jwks = res.data;
-        console.log("THIS is JWKS res: ", jwks)
+        // console.log("THIS is JWKS res: ", jwks)
         return jwks;
     }
 
-    isAuthenticated() {
-        // Check whether the current time is past the Access Token's exoiry time
-        const expiresAt = Cookies.getJSON('expiresAt');
-        // console.log(new Date().getTime() < expiresAt);
-        return new Date().getTime() < expiresAt;   
-    }
+    // isAuthenticated() {
+    //     // Check whether the current time is past the Access Token's exoiry time
+    //     const expiresAt = Cookies.getJSON('expiresAt');
+    //     // console.log(new Date().getTime() < expiresAt);
+    //     return new Date().getTime() < expiresAt;   
+    // }
 
     async verifyToken(token) {
         if (token) {
             const decodedToken = jwt.decode(token, { complete: true});
 
-            if (!decodedToken) { return undefined; }
+            // if (!decodedToken) { return undefined; }
 
             const jwks = await this.getJWKS();
             const jwk = jwks.keys[0];
             console.log("THIS IS jwk :", jwk);
+
             //BUILD CERTIFICATE
             let cert = jwk.x5c[0];
             cert = cert.match(/.{1,64}/g).join('\n');
@@ -92,7 +93,6 @@ class Auth0 {
                     const expiresAt = decodedToken.exp * 1000;
 
                     return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
-
                 }catch(err) {
                     return undefined;
                 }
