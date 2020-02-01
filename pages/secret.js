@@ -4,13 +4,16 @@ import BasePage from '../components/BasePage';
 
 import withAuth from '../components/hoc/withAuth';
 
-import { getSecretData } from '../actions';
+import { getSecretData, getSecretDataServer } from '../actions';
 
 class Secret extends React.Component {
 
-    static getInitialProps() {
-        const superSecretValue = 'Super Secret Value';
-        return { superSecretValue};        
+    static async getInitialProps({req}) {
+        const anotherSecretData =  await getSecretData();
+
+        // console.log(anotherSecretData);
+
+        return { anotherSecretData};        
     } 
 
     // constructor(props) {
@@ -36,7 +39,7 @@ class Secret extends React.Component {
     displaySecretData() {
         const { secretData } = this.state;
         if ( secretData && secretData.length > 0 ) {
-            return secretData.map((data) => {
+            return secretData.map((data, index) => {
                 return (
                     <div key={index}>
                         <p>{data.title}</p>
@@ -49,9 +52,8 @@ class Secret extends React.Component {
     }
 
     
-    render() {  
-
-        //....
+    render() { 
+        debugger;
         const { superSecretValue } = this.props;
         console.log(this.state);
         return(
