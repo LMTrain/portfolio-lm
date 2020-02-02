@@ -10,8 +10,7 @@ export default role => Component =>
     static async getInitialProps(args) {
         const pageProps = await Component.getInitialProps && await Component.getInitialProps(args);
 
-        return { ...pageProps };
-        
+        return { ...pageProps };        
     }
 
     renderProtectedPage() {

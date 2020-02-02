@@ -9,7 +9,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = routes.getRequestHandler(app);
 
-
 const secretData = [
     {
         title: 'SecretData 1',
@@ -25,11 +24,11 @@ app.prepare()
 .then(() => {
     const server = express();
 
+    server.get('/api/v1/secret', authservice.checkJWT, (req, res) => {        
+        return res.json(secretData);
+    })
 
-
-    server.get('/api/v1/secret', authservice.checkJWT, (req, res) => {
-        // console.log('--------------CONSOLLING USER-------------');
-        // console.log(req.user);
+    server.get('/api/v1/onlysiteowner', authservice.checkJWT, authservice.checkRole('siteOwner'), (req, res) => {
         return res.json(secretData);
     })
 
@@ -46,7 +45,7 @@ app.prepare()
 
     server.use(handle).listen(3000, (err) => {
         if (err) throw err
-        console.log('> Ready 0 http://localhost:300')
+        console.log('> Ready 0n http://localhost:3000')
     })
 })
 .catch((ex) => {
