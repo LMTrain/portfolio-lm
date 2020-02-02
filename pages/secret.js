@@ -52,22 +52,20 @@ class Secret extends React.Component {
     }
 
     
-    render() { 
-        debugger;
+    render() {        
         const { superSecretValue } = this.props;
-        console.log(this.state);
+        
         return(
             <BaseLayout {...this.props.auth}>
                 <BasePage>                                  
-                    <h1>I am a Secret</h1> 
-                    <p>Seceret Content</p>
+                    <h1>I am Secret Page</h1> 
+                    <p>Seceret Content Here</p>
                     <h2>{superSecretValue}</h2>
                     { this.displaySecretData() }            
                 </BasePage>
             </BaseLayout>
-        )  
-            
+        )            
     }
 }
 
-export default withAuth(Secret);
+export default withAuth()(Secret);
