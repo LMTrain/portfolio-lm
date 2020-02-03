@@ -14,11 +14,11 @@ import auth0 from '../../services/auth0';
 
 
 const BsNavLink = (props) => {
-const { route, title } = props;
-return (
-     <Link href={route}>
-          <a className="nav-link port-navbar-link"> {title}</a>
-     </Link>
+     const { route, title } = props;
+     return (
+          <Link href={route}>
+               <a className="nav-link port-navbar-link"> {title}</a>
+          </Link>
      )
 }
 
@@ -52,11 +52,11 @@ export default class Header extends React.Component {
 
      render() {
 
-          const { isAuthenticated } = this.props;
+          const { isAuthenticated, user, className } = this.props;
 
           return (
                <div>
-                    <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+                    <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
                          <NavbarBrand className="port-navbar-brand" href="/">
                          <Image src="../../static/images/linkedin1.jpg" roundedCircle fluid />
                          Laycon Muriziq
@@ -83,20 +83,20 @@ export default class Header extends React.Component {
                                    <NavItem className="port-navbar-item">
                                         <BsNavLink route="/cv" title="Resume" />                 
                                    </NavItem>
-                                   <NavItem className="port-navbar-item">
+                                   {/* <NavItem className="port-navbar-item">
                                         <BsNavLink route="https://github.com/LMTrain" title="GitHub" />                 
-                                   </NavItem>
+                                   </NavItem> */}
                                
-                                        <NavItem className="port-navbar-item">
-                                             <Login />                 
-                                        </NavItem>
-                                   
-                                  
-                                        <NavItem className="port-navbar-item">
-                                             <Logout />                 
-                                        </NavItem>
+                                   {/* <NavItem className="port-navbar-item">
+                                        <Login />                 
+                                   </NavItem>
+                              
+                              
+                                   <NavItem className="port-navbar-item">
+                                        <Logout />                 
+                                   </NavItem> */}
                                  
-                                   {/* { isAuthenticated &&
+                                   { !isAuthenticated &&
                                         <NavItem className="port-navbar-item">
                                              <Login />                 
                                         </NavItem>
@@ -105,7 +105,7 @@ export default class Header extends React.Component {
                                         <NavItem className="port-navbar-item">
                                              <Logout />                 
                                         </NavItem>
-                                   } */}
+                                   }
                               
                               </Nav>           
                          </Collapse>

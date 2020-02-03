@@ -3,7 +3,7 @@
 // }
 
 // HEADER
-.port-navbar.port-default {
+.port-navbar.port-nav-base {
   width: 100%;
   z-index: 15;
   padding: 40px;
@@ -45,4 +45,8 @@
     max-width: 10%;
     height: auto;
 }
+}
+.port-navbar.port-nav-base.port-nav-default {
+  padding: 5px;
+  background-color: $secondary !important;
 }
