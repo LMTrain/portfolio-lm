@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, FormGroup, Label } from 'reactstrap';
 import PortInput from '../form/PortInput';
+import PortDate from '../form/PortDate';
 
 const validateInputs = (values) => {
   let errors = {};
@@ -37,47 +38,52 @@ const PortfolioCreateForm = () => (
       {({ isSubmitting }) => (
         <Form>         
             
-            <Field 
-              label="Title"
-              type="text" 
-              name="title" 
-              component={PortInput}/>        
-            
-            <Field 
-              label="Company" 
-              type="text" 
-              name="company" 
-              component={PortInput}/>
+          <Field 
+            label="Title"
+            type="text" 
+            name="title" 
+            component={PortInput}
+          />        
           
-            <Field 
-              label="Location" 
-              type="text" 
-              name="location" 
-              component={PortInput}/>
+          <Field 
+            label="Company" 
+            type="text" 
+            name="company" 
+            component={PortInput}
+          />
+        
+          <Field 
+            label="Location" 
+            type="text" 
+            name="location" 
+            component={PortInput}
+          />
+        
+          <Field 
+            label="Position" 
+            type="text" 
+            name="position" 
+            component={PortInput}
+          />
           
-            <Field 
-              label="Position" 
-              type="text" 
-              name="position" 
-              component={PortInput}/>
-           
-            <Field 
-              label="Description" 
-              type="textarea" 
-              name="description" 
-              component={PortInput} />
-
-            <Field 
-              label="Star tDate" 
-              type="text" 
-              name="startDate" 
-              component={PortInput}/>
-  
-            <Field 
-              label="End Date" 
-              type="text" 
-              name="endDate" 
-              component={PortInput}/>
+          <Field 
+            label="Description" 
+            type="textarea" 
+            name="description" 
+            component={PortInput} 
+          />        
+          
+          <Field 
+            name="startDate"
+            label="Start Date" 
+            component={PortDate} 
+          />        
+        
+          <Field 
+            name="endDate" 
+            label="End Date"                 
+            component={PortDate} 
+          />         
 
           <button type="submit" disabled={isSubmitting}>
             Create
