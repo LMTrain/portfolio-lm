@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const mongoose = require ('mongoose');
 const routes = require('../routes')
 
 //SERVICES
@@ -8,6 +9,7 @@ const authservice = require('./services/auth');
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = routes.getRequestHandler(app);
+const config = require('./config');
 
 const secretData = [
     {
@@ -19,6 +21,18 @@ const secretData = [
         description: 'Secret Password'
     }
 ]
+
+//CONNECTING TO DATABASE
+//OPTION 1
+// async () => (await mongoose.connect(config.DB_URI, {useNewUrlParser: true}))();
+
+//OPTION 2
+mongoose.connect(config.DB_URI, {useNewUrlParser: true})
+    .then(() => console.log('DB connected!'))
+    .catch(err => console.error(err));
+//CONNECTION COMPLETED
+
+
 
 app.prepare()
 .then(() => {
