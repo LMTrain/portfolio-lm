@@ -1,8 +1,5 @@
 import { Button, FormGroup, Label, Input } from 'reactstrap';
 
-
-
-
 const PortInput = ({
     label,
     type,
