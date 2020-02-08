@@ -16,11 +16,15 @@ export default class PortDate extends React.Component {
     }
  
     handleChange(date) {
-
-        const formattedDate = date.format();
+        const { setFieldValue, setFieldTouched } = this.props.form;
+        const { name } = this.props.field;
+        
         this.setState({
             dateValue: date
         });
+
+        setFieldValue(name, date, true);
+        setFieldTouched(name, true, true);
     };
 
     render() {
