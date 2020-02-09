@@ -11,6 +11,9 @@ const app = next({ dev })
 const handle = routes.getRequestHandler(app);
 const config = require('./config');
 
+const Book = require('./models/book');
+const bodyParser = require('body-parser');
+
 const secretData = [
     {
         title: 'SecretData 1',
@@ -37,7 +40,23 @@ mongoose.connect(config.DB_URI, {useNewUrlParser: true})
 app.prepare()
 .then(() => {
     const server = express();
+    //INFORMING SERVER TO USE bodyParser.json AS THE MIDDLEWARE
+    server.use(bodyParser.json());
 
+    //ENDPOINT (MONGODB)
+    server.post('/api/v1/books', (req, res) => {
+        const bookData = req.body;
+        const book = new Book(bookData);
+
+        book.save((err, createdBook) => {
+            if (err) {
+                return res.status(422).send(err);
+            }
+            return res.json(createdBook);
+        });
+    })
+
+    //MIDDLEWARE
     server.get('/api/v1/secret', authservice.checkJWT, (req, res) => {        
         return res.json(secretData);
     })
@@ -49,7 +68,7 @@ app.prepare()
     
     server.get('*', (req, res) => {       
         return handle(req, res)
-    })
+    })    
     
     server.use(function (err, req, res, next) {
         if (err.name === 'UnauthorizedError') {
