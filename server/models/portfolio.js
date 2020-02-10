@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//FUNCTION TO SET STRING TYPES
 const setStringType = (maxLength) => ({ type: String, required: true, maxlength: maxLength })
 
 const portfolioSchema = new Schema({
