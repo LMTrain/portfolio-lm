@@ -43,10 +43,11 @@ app.prepare()
     //INFORMING SERVER TO USE bodyParser.json AS THE MIDDLEWARE
     server.use(bodyParser.json());
 
-    //ENDPOINT (MONGODB)
+    //ENDPOINT - POST DATA TO MONGODB
     server.post('/api/v1/books', (req, res) => {
         const bookData = req.body;
         const book = new Book(bookData);
+        console.log(bookData);
 
         book.save((err, createdBook) => {
             if (err) {
@@ -55,6 +56,55 @@ app.prepare()
             return res.json(createdBook);
         });
     })
+
+    //ENDPOINT - GET ALL DATA FROM MONGODB
+    server.get('/api/v1/books', (req, res) => {
+        Book.find({}, (err, allBooks) => {
+            if (err) {
+                return res.status(422).send(err);
+            }
+            return res.json(allBooks);
+        })
+    });
+
+    //ENDPOINT - UPDATE DATA IN MONGODB
+    server.patch('/ap/v1/books/:id', (req, res) => {
+        const bookId = req.params.id;
+        const bookData = req.body;
+        console.log(bookId);
+
+        Book.findById(bookId, (err, foundBook) => {
+            console.log(foundBook);
+            if (err) {
+                return res.status(422).send(err);
+            }
+            foundBook.set(bookData);
+            foundBook.save((err, savedBook) => {
+                console.log(savedBook);
+                if (err) {
+                    console.log(savedBook);
+                    return res.status(422).send(err);
+                }
+                console.log(savedBook);
+                console.log(foundBook);
+                return res.json(foundBook);
+            });
+        })
+    })
+
+    //ENDPOINT - DELETE DATA IN MONGODB
+    server.delete('/api/v1/books/:id', (req, res) => {
+        const bookId = req.params.id;
+        console.log(bookId);
+
+        Book.deleteOne({_id: bookId}, (err, deletedBook) => {
+            if (err) {                
+                return res.status(422).send(err);
+            }
+            console.log(deletedBook);
+            return res.json({status: 'DELETED'});
+        })
+    });
 
     //MIDDLEWARE
     server.get('/api/v1/secret', authservice.checkJWT, (req, res) => {        
