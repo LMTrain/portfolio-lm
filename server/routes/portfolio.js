@@ -4,10 +4,14 @@ const portfolioCtrl = require('../controllers/portfolio')
 const authService = require('../services/auth');
 
 //ENDPOINT - POST DATA TO MONGODB, ROUTING TO CONTROLLER
-router.post('', authService.checkJWT, authService.checkRole('siteOwner'), portfolioCtrl.savePortfolio);
+router.post('', authService.checkJWT, 
+                authService.checkRole('siteOwner'), 
+                portfolioCtrl.savePortfolio);
 
 //ENDPOINT - GET ALL DATA FROM MONGODB, ROUTING TO CONTROLLER
-router.get('', authService.checkJWT, authService.checkRole('siteOwner'), portfolioCtrl.getPortfolios);
+router.get('', authService.checkJWT, 
+                authService.checkRole('siteOwner'), 
+                portfolioCtrl.getPortfolios);
 
 // //ENDPOINT - UPDATE DATA IN MONGODB, ROUTING TO CONTROLLER
 // router.patch('/:id', bookCtrl.updateBook);
