@@ -14,9 +14,13 @@ router.get('', authService.checkJWT,
                 portfolioCtrl.getPortfolios);
 
 // //ENDPOINT - UPDATE DATA IN MONGODB, ROUTING TO CONTROLLER
-// router.patch('/:id', bookCtrl.updateBook);
+router.patch('/:id', authService.checkJWT, 
+                        authService.checkRole('siteOwner'), 
+                        portfolioCtrl.updatePortfolio);
 
 // //ENDPOINT - DELETE DATA IN MONGODB, ROUTING TO CONTROLLER
-// router.delete('/:id', bookCtrl.deleteBook);
+router.delete('/:id',  authService.checkJWT, 
+                        authService.checkRole('siteOwner'),
+                        portfolioCtrl.deletePortfolio);
 
 module.exports = router;
