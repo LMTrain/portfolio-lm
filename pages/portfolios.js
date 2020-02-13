@@ -9,11 +9,11 @@ import { getPortfolios } from '../actions';
 
 class Portfolios extends React.Component {
 
-    static async getInitialProps({req}) {      
+    static async getInitialProps() {      
         let portfolios = [];
 
         try {
-            portfolios = await getPortfolios(req);
+            portfolios = await getPortfolios();
         } catch(err) {
             console.error(err);
         }
