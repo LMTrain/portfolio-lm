@@ -2,31 +2,34 @@ import React from 'react'
 import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
 import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
-
 import { Row, Col } from 'reactstrap';
-
 import { createPortfolio } from '../actions';
-
 import withAuth from '../components/hoc/withAuth';
+import { Router } from '../routes';
+
 
 class PortfolioNew extends React.Component {
 
     constructor(props){
         super();
-
         this.state = {
             error: undefined
         }
         this.savePortfolio = this.savePortfolio.bind(this);
     }
 
-    savePortfolio(portfolioData) {
+    savePortfolio(portfolioData, {setSubmitting}) {
+        setSubmitting(true);
         createPortfolio(portfolioData)
-        .then((portfolio) => {            
-        this.setState({error: underfined});
+        .then((portfolio) => {
+            setSubmitting(false);           
+            this.setState({error: undefined});
+            Router.pushRoute('/portfolios');
         })
-        .catch((err) => { 
-            this.setState({error: err.message});
+        .catch((err) => {
+            const error = err.message || 'Server Error!'
+            setSubmitting(false);
+            this.setState({error});
         })
     }
 

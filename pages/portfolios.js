@@ -30,7 +30,7 @@ class Portfolios extends React.Component {
                             <Card className="portfolio-card">
                                 <CardHeader className="portfolio-card-header">{portfolio.position}</CardHeader>
                                 <CardBody>
-                                <p className="portfolio-card-city"> {portfolio.location} </p>
+                                <p className="portfolio-card-text"> {portfolio.location} </p>
                                 <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
                                 <CardText className="portfolio-card-text">{portfolio.description}</CardText>
                                 <div className="readMore"> </div>

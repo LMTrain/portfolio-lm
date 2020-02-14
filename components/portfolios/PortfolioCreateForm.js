@@ -9,8 +9,9 @@ const validateInputs = (values) => {
 
   Object.entries(values).forEach(([key, value]) => {    
     // console.log(key);
-    if(!values[key] && values[key] === 'startDate' || values[key] === 'endDate') {
-      errors[key] = `Field ${key} is required!`
+    //debugger
+    if(!values[key] && key !== 'endDate') {
+      errors[key] = `Field ${key} is required!`;
     }
   });
 
