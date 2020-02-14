@@ -11,6 +11,9 @@ router.post('', authService.checkJWT,
 //ENDPOINT - GET ALL DATA FROM MONGODB, ROUTING TO CONTROLLER
 router.get('', portfolioCtrl.getPortfolios);
 
+//ENDPOINT - GET DATA BY ID FROM MONGODB, ROUTING TO CONTROLLER
+router.get('/:id', portfolioCtrl.getPortfolioById);
+
 // //ENDPOINT - UPDATE DATA IN MONGODB, ROUTING TO CONTROLLER
 router.patch('/:id', authService.checkJWT, 
                         authService.checkRole('siteOwner'), 

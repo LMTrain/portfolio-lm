@@ -10,6 +10,19 @@ exports.getPortfolios = (req, res) => {
     })
 }
 
+//ENDPOINT - GET DATA BY ID FROM MONGODB
+exports.getPortfolioById = (req, res) => {
+    const portfolioId = req.params.id;
+    portfolio.findById(portfolioId, (err, foundPortfolio) => {
+        console.log(portfolioId);
+        if (err) {
+            return res.status(422).send(err);
+        }
+        
+        return res.json(foundPortfolio);
+    })
+}
+
 //ENDPOINT - POST DATA TO MONGODB
 exports.savePortfolio = (req, res) => {
     const portfolioData = req.body;   

@@ -13,7 +13,7 @@ import {
 import auth0 from '../../services/auth0';
 
 
-const BsNavLink = (props) => {
+const BsNavLink = (props) => {     
      const { route, title } = props;
      return (
           <Link href={route}>
@@ -22,7 +22,7 @@ const BsNavLink = (props) => {
      )
 }
 
-const Login = () => {
+const Login = () => {    
      return (
           <span onClick={auth0.login} className="nav-link port-navbar-link clickable">Login</span>
      )
@@ -41,6 +41,8 @@ export default class Header extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
           isOpen: false
+      
+          
         };
     }
 
@@ -50,16 +52,17 @@ export default class Header extends React.Component {
           });
      }
 
-     render() {
-
-          const { isAuthenticated, user, className } = this.props;
+     render() {         
+          // console.log(this.props)
+          const { isAuthenticated, user, className, userName } = this.props;
 
           return (
                <div>
                     <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
                          <NavbarBrand className="port-navbar-brand" href="/">
                          <Image src="../../static/images/linkedin1.jpg" roundedCircle fluid />
-                         Laycon Muriziq
+                         <span>LAYCON MURIZIQ</span>
+                         {/* <span>{userName}</span> */}
                          {/* <Circle r={50} fill={{url:'https://lmtrain.github.io/lm-images/assets/images/futurecar17.jpg'}} stroke={{color:'white'}} strokeWidth={2} /> */}
                          {/* { isAuthenticated &&
                               <span>{user.name}</span>
