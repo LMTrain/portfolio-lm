@@ -6,7 +6,7 @@ import { getCookieFromReq } from '../helpers/utils';
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:3000/api/v1',
     timeout: 3000
-})
+});
 
 const setAuthHeader = (req) => {
     const token = req ? getCookieFromReq(req, 'jwt') : Cookies.getJSON('jwt');
