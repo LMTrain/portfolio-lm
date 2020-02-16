@@ -11,15 +11,13 @@ exports.getPortfolios = (req, res) => {
 }
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB
-exports.getPortfolioById = (req, res) => {
-  
-    const portfolioId = req.params.id;
-    Portfolio.findOne(portfolioId, (err, foundPortfolio) => {
-        console.log(portfolioId);
+exports.getPortfolioById = (req, res) => {  
+    const portfolioId = req.params.id;    
+
+    Portfolio.findById(portfolioId, (err, foundPortfolio) => {        
         if (err) {
             return res.status(422).send(err);
-        }
-        console.log(foundPortfolio);
+        }        
         return res.json(foundPortfolio);
     })
 }
@@ -46,13 +44,13 @@ exports.updatePortfolio = (req, res) => {
     const portfolioData = req.body;
    
     Portfolio.findById(portfolioId, (err, foundPortfolio) => {
-        console.log(foundPortfolio);
+        console.log("YES YES YES---", foundPortfolio);
         if (err) {
             return res.status(422).send(err);
         }
         foundPortfolio.set(portfolioData);
         foundPortfolio.save((err, savedPortfolio) => {
-            console.log(savedPortfolio);
+            console.log("YES YES YES---", savedPortfolio);
             if (err) {               
                 return res.status(422).send(err);
             }           
