@@ -1,9 +1,9 @@
 import React from 'react'
 import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
-import { Link } from '../routes'
-// import Link from 'next/link';
-import { Col, Row, Card, CardHeader, CardBody, CardText, CardTitle} from 'reactstrap';
+import { Link } from '../routes';
+import { Col, Row, Card, CardHeader, CardBody, CardText, CardTitle, Button} from 'reactstrap';
+import { Router } from '../routes';
 
 import { getPortfolios } from '../actions';
 
@@ -33,8 +33,16 @@ class Portfolios extends React.Component {
                                 <p className="portfolio-card-text"> {portfolio.location} </p>
                                 <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
                                 <CardText className="portfolio-card-text">{portfolio.description}</CardText>
-                                <div className="readMore"> </div>
+                                <div className="readMore"> 
+                                {
+                                    <>
+                                        <Button onClick={() => Router.pushRoute(`/portfolios/${portfolio._id}/edit`)} color="warning">Edit</Button>{' '}
+                                        <Button color="danger">Update</Button>
+                                    </>
+                                }
+                                </div>
                                 </CardBody>
+                                
                             </Card>
                         </span>
                     </React.Fragment>
@@ -49,7 +57,11 @@ class Portfolios extends React.Component {
       
         return (            
             <BaseLayout {...this.props.auth}>
-                <BasePage className="portfolio-page" title="Portfolios">                            
+                <BasePage className="portfolio-page" title="Portfolios"> 
+                    <Button onClick={() => Router.pushRoute('/portfolioNew')}
+                            color="success" 
+                            className="create-port-btn">Create Portfolio
+                    </Button>
                     <Row>
                         { this.renderPortfolios(portfolios) }
                     
