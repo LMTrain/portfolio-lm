@@ -2,12 +2,21 @@ const Portfolio = require('../models/portfolio');
 
 //ENDPOINT - GET ALL DATA FROM MONGODB
 exports.getPortfolios = (req, res) => {
-    Portfolio.find({}, (err, allPortfolios) => {
+
+    Portfolio.find({})
+            .sort({'startDate': 1})
+            .exec((err, allPortfolios) => {
         if (err) {
             return res.status(422).send(err);
         }
         return res.json(allPortfolios);
     })
+    // Portfolio.find({}, (err, allPortfolios) => {
+    //     if (err) {
+    //         return res.status(422).send(err);
+    //     }
+    //     return res.json(allPortfolios);
+    // })
 }
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB
