@@ -11,10 +11,11 @@ import { Router } from '../routes';
 class PortfolioEdit extends React.Component {
     static async getInitialProps({query}) { 
         let portfolio = {};        
-        try {                   
+        try {
+            console.log(query.id)                 
             portfolio = await getPortfolioById(query.id);         
         }   catch(error) {
-            console.error(err);
+            // console.error(err);
         }
         console.log('PORTFOLIO', portfolio);       
         return {portfolio};

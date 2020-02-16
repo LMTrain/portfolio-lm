@@ -4,6 +4,8 @@ import { Button, Alert } from 'reactstrap';
 import PortInput from '../form/PortInput';
 import PortDate from '../form/PortDate';
 
+import moment from 'moment';
+
 const validateInputs = (values) => {
   let errors = {};
 
@@ -15,8 +17,8 @@ const validateInputs = (values) => {
     }
   });
 
-  const startDate = values.startDate;
-  const endDate = values.endDate;
+  const startDate = moment(values.startDate);
+  const endDate = moment(values.endDate);
 
   if  (startDate && endDate && endDate.isBefore(startDate)) {
     errors.endDate = 'End Date cannot before start date!!!';

@@ -12,14 +12,23 @@ exports.getPortfolios = (req, res) => {
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB
 exports.getPortfolioById = (req, res) => {  
-    const portfolioId = req.params.id;    
-
-    Portfolio.findById(portfolioId, (err, foundPortfolio) => {        
+    const portfolioId = req.params.id;
+    console.log(portfolioId);
+    Portfolio.findById(portfolioId)
+                .select('-__v')
+                .exec((err, foundPortfolio) => {
         if (err) {
             return res.status(422).send(err);
-        }        
+        }
         return res.json(foundPortfolio);
-    })
+    });
+
+    // Portfolio.findById(portfolioId, (err, foundPortfolio) => {        
+    //     if (err) {
+    //         return res.status(422).send(err);
+    //     }        
+    //     return res.json(foundPortfolio);
+    // })
 }
 
 //ENDPOINT - POST DATA TO MONGODB
