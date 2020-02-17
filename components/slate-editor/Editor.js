@@ -33,6 +33,9 @@ function CodeNode(props) {
         </pre>
     )
 }
+function BoldMark(props) {
+    return <strong>{props.children}</strong>
+}
 
 //Define our app...
 export default class SlateEditor extends React.Component {
@@ -52,17 +55,28 @@ export default class SlateEditor extends React.Component {
     }
 
     onKeyDown = (event, editor, next) => {
-        //Return with no changes if the keypress is not '&'
-        if (event.key != 'x' || !event.ctrlKey) return next()
-
-        //prevent the ampersand character from being inserted.
-        event.preventDefault();
-        //Determine whether any of the currently selected blocks are code blocks
-        const isCode = editor.value.blocks.some(block => block.type == 'code')
-
-        //Toggle the block type depending on 'isCode
-        editor.setBlocks(isCode ? 'paragraph' : 'code')
-             
+        if (!event.ctrlkey) return next()
+        //Decide what to do baased on the key code..
+        switch (event.key) {
+        //When "B" is pressed, add a "bold" mark to the text.
+            case 'b': {
+                event.preventDefault()
+                editor.togglemark('bold')
+                break;
+            }
+            //When "`" is pressed, keep our existing code block logic.
+            case 'x': {
+                const isCode = editor.value.blocks.some(block => block.type == 'code')
+                event.preventDefault();
+                //Toggle the block type depending on 'isCode
+                editor.setBlocks(isCode ? 'paragraph' : 'code');
+                break;
+            }
+            //Otherwise, let other plugins handle it.
+            default: {
+                return next()
+            }
+        }             
     }
 
     // Add a 'renderNode' method to render a 'CodeNode' for code blocks
@@ -72,6 +86,16 @@ export default class SlateEditor extends React.Component {
                 return <CodeNode {...props} />
             case 'paragraph':
                 return <p {...props.attributes}>{props.children}</p>
+            default:
+                return next()
+        }
+    }
+
+    //Add a 'renderMark' method to render marks.
+    renderMark = (props, editor, next) => {
+        switch (props.mark.type) {
+            case 'bold':
+                return <BoldMark {...props} />
             default:
                 return next()
         }
@@ -88,7 +112,8 @@ export default class SlateEditor extends React.Component {
                         value={this.state.value} 
                         onChange={this.onChange} 
                         onKeyDown={this.onKeyDown}
-                        renderNode={this.renderNode} />
+                        renderNode={this.renderNode}
+                        renderMark={this.renderMark} />
                 }
             </>
         )
