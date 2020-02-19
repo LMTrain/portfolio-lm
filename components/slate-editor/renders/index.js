@@ -3,7 +3,7 @@ import { Button, Icon } from '../components';
 const DEFAULT_NODE = 'paragraph'
 
 function onClickMark(event, type, editor) {
-  debugger;
+  //debugger;
   event.preventDefault()
   editor.toggleMark(type)
 }
@@ -52,6 +52,9 @@ const onClickBlock = (event, type, editor) => {
       return !!document.getClosest(block.key, parent => parent.type == type)
     })
 
+    console.log('isList', isList);
+    console.log('isType', isType);
+
     if (isList && isType) {
       editor
         .setBlocks(DEFAULT_NODE)
@@ -97,7 +100,7 @@ export const renderBlockButton = (type, icon, editor) => {
 export const renderNode = (props, editor, next) => {
   const { attributes, children, node } = props
 
-  debugger;
+  //debugger;
   switch (node.type) {
     case 'paragraph':
       return <p {...attributes}>{children}</p>
@@ -121,7 +124,7 @@ export const renderNode = (props, editor, next) => {
 
 export const renderMark = (props, editor, next) => {
   const { children, mark, attributes } = props
-  debugger;
+  //debugger;
 
   switch (mark.type) {
     case 'bold':
