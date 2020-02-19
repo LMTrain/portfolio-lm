@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { StyledMenu } from "./components"
+import { StyledMenu } from "./components";
+import { renderMarkButton } from './renders';
 
 
 class HoverMenu extends React.Component {
+
+    renderMarkButton(type, icon) {
+        const { editor } = this.props;
+
+        return renderMarkButton(type, icon, editor);
+    }
   
     render() {
-        const { className, innerRef } = this.props
+        const { className, innerRef, editor } = this.props
         const root = window.document.getElementById('__next')
 
         return ReactDOM.createPortal(
