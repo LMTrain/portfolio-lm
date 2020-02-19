@@ -1,116 +1,89 @@
 import React from 'react';
-import { Editor } from 'slate-react';
-import { Value } from 'slate';
-import { renderMark } from './renders';
+
 import HoverMenu from './HoverMenu';
 
+import { Editor } from 'slate-react';
+import { initialValue } from './initial-value';
+import { renderMark, renderNode } from './renders';
 
-//CREATE OUR INITIAL VALUE..
-const initialValue = Value.fromJSON({
-    document: {
-        nodes: [
-            {
-                object: 'block',
-                type: 'paragraph',
-                nodes: [
-                    {
-                        object: 'text',
-                        leaves: [
-                            {
-                                text: 'A line of text in a paragraph.',
-                            },
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
-});
-
-//Define a React Component render for our code blocks
-function CodeNode(props) {
-    return (
-        <pre {...props.attributes}>
-            <code>{props.children}</code>
-        </pre>
-    )
-}
-function BoldMark(props) {
-    return <strong>{props.children}</strong>
-}
-
-//Define our app...
 export default class SlateEditor extends React.Component {
-    //Set the initial value when the app is first constructed.
-    state = {
-        value: initialValue,
-        isLoaded: false
+  // Set the initial value when the app is first constructed.
+  state = {
+    value: initialValue,
+    isLoaded: false
+  }
+
+  componentDidMount() {
+    this.updateMenu();
+    this.setState({isLoaded: true});
+  }
+
+  componentDidUpdate = () => {
+    this.updateMenu();
+  }
+
+  // On change, update the app's React state with the new editor value.
+  onChange = ({ value }) => {
+    this.setState({ value })
+  }
+
+  updateMenu = () => {
+    const menu = this.menu
+    if (!menu) return
+
+    const { value } = this.state
+    const { fragment, selection } = value
+
+    if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+      menu.removeAttribute('style')
+      return
     }
 
-    componentDidMount() {
-        this.updateMenu();
-        this.setState({isLoaded: true});
-    }
+    const native = window.getSelection()
+    const range = native.getRangeAt(0)
+    const rect = range.getBoundingClientRect()
+    menu.style.opacity = 1
+    menu.style.top = `${rect.top + window.pageYOffset - menu.offsetHeight}px`
 
-    componentDidUpdate = () => {
-        this.updateMenu();
-    }
+    menu.style.left = `${rect.left +
+      window.pageXOffset -
+      menu.offsetWidth / 2 +
+      rect.width / 2}px`
+  }
 
-    //On change, update the app's React state with the new editor value.
-    onChange = ({ value}) => {
-        this.setState({ value })
-    }
-    
-    updateMenu = () => {
-        const menu = this.menu
-        if (!menu) return
+  // Render the editor.
+  render() {
+    const { isLoaded } = this.state;
 
-        const { value } = this.state
-        const { fragment, seslection } = value
-
-        if (Selection.isBlurred || Selection.isCollapsed || fragment.text === '') {
-            menu.removeAttribute('style')
-            return
+    return (
+      <React.Fragment>
+        { isLoaded &&
+          <Editor placeholder="Enter some text..."
+                  value={this.state.value}
+                  onChange={this.onChange}
+                  renderMark={renderMark}
+                  renderNode={renderNode}
+                  renderEditor={this.renderEditor}
+                  />
         }
+      </React.Fragment>
+    )
+  }
 
-        const native = window.getSelection()
-        const range = native.getRangeAt(0)
-        const rect = range.getBoundingClientRect()
-        menu.style.opacity = 1
-        menu.style.top = `${rect.top + window.pageYOffset - menu.offsetHeight}px`
-
-        menu.style.left = `${rect.left +
-            window.pageXOffset-menu.offsetWidth / 2 +
-            rect.width / 2}px`
-    }
-
-    //Render the editor
-    render() {
-        const { isLoaded } = this.state;
-
-        return (
-            <>
-                {
-                    <Editor
-                        placeholder="Enter Text...."
-                        value={this.state.value} 
-                        onChange={this.onChange}
-                        renderMark={renderMark}
-                        renderEditor={this.renderEditor}
-                    />
-                }
-            </>
-        )
-    }
-
-    renderEditor = (props, editor, next) => {
-        const children = next()
-        return (
-            <>
-                {children}
-                <HoverMenu innerRef={menu => (this.menu)} editor={editor} />
-            </>
-
-        )
-    }
+  renderEditor = (props, editor, next) => {
+    const children = next()
+    return (
+      <React.Fragment>
+        {children}
+        <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+      </React.Fragment>
+    )
+  }
 }
+
+
+
+
+
+
+
