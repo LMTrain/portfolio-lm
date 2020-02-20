@@ -59,6 +59,17 @@ export const deletePortfolio = (portfolioId) => {
 }
 
 
+//-------------------BLOG ACTIONS--------------------
+
+export const saveBlog = (blogData) => {
+    return new Promise ((resolver, reject) => {
+        setTimeout(() => {
+            resolver('Promise resolve!!');
+        }, 1000)
+    })
+}
+
+
 
 // export const getSecretDataServer = async (req) => {
 //     return await axios.get('http://localhost:3000//api/v1/secret', setAuthHeader(req)).then(response =>  response.data);
