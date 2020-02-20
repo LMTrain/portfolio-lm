@@ -13,7 +13,7 @@ router.post('', authService.checkJWT,
 // router.get('', portfolioCtrl.getPortfolios);
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB, ROUTING TO CONTROLLER
-// router.get('/:id', portfolioCtrl.getPortfolioById);
+router.get('/:id', blogCtrl.getBlogById);
 
 // //ENDPOINT - UPDATE DATA IN MONGODB, ROUTING TO CONTROLLER
 // router.patch('/:id', authService.checkJWT, 

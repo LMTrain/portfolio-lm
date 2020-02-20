@@ -15,18 +15,16 @@ const Blog = require('../models/blog');
 // }
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB
-// exports.getBlogById = (req, res) => {  
-//     const blogId = req.params.id;
-//     console.log(blogId);
-//     Blog.findById(blogId)
-//                 .select('-__v')
-//                 .exec((err, foundBlog) => {
-//         if (err) {
-//             return res.status(422).send(err);
-//         }
-//         return res.json(foundBlog);
-//     });    
-// }
+exports.getBlogById = (req, res) => {  
+    const blogId = req.params.id;
+    console.log(blogId);
+    Blog.findById(blogId, (err, foundBlog) => {
+        if (err) {
+            return res.status(422).send(err);
+        }
+        return res.json(foundBlog);
+    })  
+}
 
 //ENDPOINT - POST DATA TO MONGODB
 exports.createBlog = (req, res) => {
