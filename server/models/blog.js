@@ -12,7 +12,7 @@ const blogSchema = new Schema({
     story: setStringType(600),   
     createdAt: { type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now},
-    status: { type: String, required: true},
+    status: { type: String, default: 'draft'},
     author: setStringType(256),
 });
 
