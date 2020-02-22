@@ -12,11 +12,11 @@ const BLOCK_TAGS = {
 const MARK_TAGS = {
     em: 'italic',
     strong: 'bold',
-    u: 'underline',
+    u: 'underlined',
     code: 'code'
 }
 
-const rules = [
+export const rules = [
     {
         deserialize(el, next) {
             const type = BLOCK_TAGS[el.tagName.toLowerCase()]
@@ -69,7 +69,7 @@ const rules = [
                         return <strong>{children}</strong>
                     case 'italic':
                         return <em>{children}</em>
-                    case 'underline':
+                    case 'underlined':
                         return <u>{children}</u>
                     case 'code':
                         return <code>{children}</code>

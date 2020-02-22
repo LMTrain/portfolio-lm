@@ -6,6 +6,10 @@ import ControlMenu from './ControlMenu';
 import { Editor } from 'slate-react';
 import { initialValue } from './initial-value';
 import { renderMark, renderNode } from './renders';
+import Html from 'slate-html-serializer';
+import { rules } from './rules';
+
+const html = new Html({ rules })
 
 export default class SlateEditor extends React.Component {
   // Set the initial value when the app is first constructed.
@@ -68,8 +72,10 @@ export default class SlateEditor extends React.Component {
   }
 
   save() {
+    const {value } = this.state;
     const {save} = this.props;
     const headingValues = this.getTitle();
+    const text = html.serialize(value);
 
     save(headingValues);
   }
