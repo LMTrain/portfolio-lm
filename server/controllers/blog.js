@@ -1,4 +1,6 @@
 const Blog = require('../models/blog');
+const AsyncLock = require('async-lock');
+const lock = new AsyncLock;
 
 //ENDPOINT - GET ALL DATA FROM MONGODB
 // exports.getBlog = (req, res) => {
@@ -28,20 +30,26 @@ exports.getBlogById = (req, res) => {
 
 //ENDPOINT - POST DATA TO MONGODB
 exports.createBlog = (req, res) => {
-    const blogData = req.body;   
-    // const userId = req.user && req.user.sub;
-    const blog = new Blog(blogData);
-    if (req.user) {
-        blog.userId = req.user.sub;
-        blog.author = req.user.name;
-    }
-    console.log(blogData);
-    blog.save((err, createdBlog) => {
-        if (err) {
-            return res.status(422).send(err);
+    lock.acquire(key, function(done) {       
+        const blogData = req.body;
+        const blog = new Blog(blogData);
+        if (req.user) {
+            blog.userId = req.user.sub;
+            blog.author = req.user.name;
         }
-        return res.json(createdBlog);
-    });
+        console.log(blogData);
+        blog.save((err, createdBlog) => {
+            setTimeout(() => done(), 5000);
+            if (err) {
+                return res.status(422).send(err);
+            }
+            return res.json(createdBlog);
+        }); 
+    }, function(err, ret) {
+        // lock released       
+        err && console.error(err)
+    });    
+    
 }
 
 //ENDPOINT - UPDATE DATA IN MONGODB
