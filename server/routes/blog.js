@@ -15,6 +15,10 @@ router.post('', authService.checkJWT,
 //ENDPOINT - GET DATA BY ID FROM MONGODB, ROUTING TO CONTROLLER
 router.get('/:id', blogCtrl.getBlogById);
 
+router.patch('/:id', authService.checkJWT, 
+                authService.checkRole('siteOwner'), 
+                blogCtrl.updateBlog);
+
 // //ENDPOINT - UPDATE DATA IN MONGODB, ROUTING TO CONTROLLER
 // router.patch('/:id', authService.checkJWT, 
 //                         authService.checkRole('siteOwner'), 
