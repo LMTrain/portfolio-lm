@@ -35,6 +35,18 @@ export default class SlateEditor extends React.Component {
     this.setState({ value })
   }
 
+  onKeyDown(event, change, next) {
+    const {isLoading} = this.props;
+
+    if (!isLoading && event.which === 83 && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      this.save();
+      return;
+    }
+     //go to the next function
+     next();
+  }
+
   updateMenu = () => {
     const menu = this.menu
     if (!menu) return
@@ -61,7 +73,7 @@ export default class SlateEditor extends React.Component {
 
 
   getTitle() {
-    const {value } = this.state;
+    const { value } = this.state;
     const firstBlock = value.document.getBlocks().get(0);
     const secondBlock = value.document.getBlocks().get(1);
 
@@ -75,7 +87,7 @@ export default class SlateEditor extends React.Component {
   }
 
   save() {
-    const {value } = this.state;
+    const { value } = this.state;
     const {save, isLoading } = this.props;
     const headingValues = this.getTitle();
     const text = html.serialize(value);
@@ -94,6 +106,7 @@ export default class SlateEditor extends React.Component {
                   placeholder="Enter some text..."
                   value={this.state.value}
                   onChange={this.onChange}
+                  onKeyDown={(event, change, next) => this.onKeyDown(event, change, next)} //ANOTHER WAY TO BIND
                   renderMark={renderMark}
                   renderNode={renderNode}
                   renderEditor={this.renderEditor}
