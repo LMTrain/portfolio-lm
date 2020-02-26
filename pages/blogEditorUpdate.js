@@ -5,6 +5,7 @@ import BasePage from '../components/BasePage';
 import withAuth from '../components/hoc/withAuth';
 
 import SlateEditor from '../components/slate-editor/Editor';
+import { toast } from 'react-toastify';
 
 import { getBlogById, updateBlog } from '../actions';
 
@@ -41,10 +42,12 @@ class BlogEditorUpdate extends React.Component {
         this.setState({isSaving:true});
 
         updateBlog(updatedBlog, blog._id).then(updatedBlog => {
+            toast.success('Blog Saved Sucessfully!');
             this.setState({isSaving: false});           
         }).catch(err => {
             this.setState({isSaving: false});
             const message = err.message || 'Server Error';
+            toast.error(message);
             console.error(message);
         })
     }

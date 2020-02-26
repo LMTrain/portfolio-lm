@@ -6,6 +6,7 @@ import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
 
 import SlateEditor from '../components/slate-editor/Editor';
+import { toast } from 'react-toastify';
 
 import { createBlog } from '../actions';
 
@@ -31,9 +32,11 @@ class BlogEditor extends React.Component {
 
         createBlog(blog, lockId).then(createdBlog => {
             this.setState({isSaving: false});
+            toast.success('Blog Saved Sucessfully!');
             Router.pushRoute(`/blogs/${createdBlog._id}/edit`);
         }).catch(err => {
             this.setState({isSaving: false});
+            toast.error(message);
             const message = err.message || 'Server Error';
             console.error(message);
         })

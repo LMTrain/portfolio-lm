@@ -35,7 +35,7 @@ export default class SlateEditor extends React.Component {
     this.setState({ value })
   }
 
-  onKeyDown(event, change, next) {
+  onKeyDown = (event, change, next) => {
     const {isLoading} = this.props;
 
     if (!isLoading && event.which === 83 && (event.ctrlKey || event.metaKey)) {
@@ -106,7 +106,7 @@ export default class SlateEditor extends React.Component {
                   placeholder="Enter some text..."
                   value={this.state.value}
                   onChange={this.onChange}
-                  onKeyDown={(event, change, next) => this.onKeyDown(event, change, next)} //ANOTHER WAY TO BIND
+                  onKeyDown={this.onKeyDown}
                   renderMark={renderMark}
                   renderNode={renderNode}
                   renderEditor={this.renderEditor}
