@@ -67,10 +67,16 @@ export const createBlog = (blogData, lockId) => {
         .catch(err => rejectPromise(err))   
 }
 
+export const updateBlog = (blogData, blogId) => {
+    return axiosInstance.patch(`/blogs/=${blogId}`, blogData, setAuthHeader())
+        .then(response => response.data)
+        .catch(err => rejectPromise(err))   
+}
+
+
 export const getBlogById = (blogId) => {
     return axiosInstance.get(`/blogs/${blogId}`).then(response => response.data);
 }
-
 
 
 // export const getSecretDataServer = async (req) => {
