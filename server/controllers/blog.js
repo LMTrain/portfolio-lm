@@ -31,7 +31,7 @@ exports.getBlogById = (req, res) => {
 exports.updateBlog = (req, res) => {
     const blogId = req.params.id;
     const blogData = req.body;
-
+   
     Blog.findById(blogId, function(err, foundBlog) {
         if (err) {
             return res.status(422).send(err);

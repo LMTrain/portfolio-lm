@@ -16,7 +16,7 @@ class BlogEditorUpdate extends React.Component {
         let blog = {};
 
         try {
-            const blog = await getBlogById(blogId)
+            blog = await getBlogById(blogId)
             return {blog};
         } catch(err) {        
             console.error(err);
@@ -34,6 +34,7 @@ class BlogEditorUpdate extends React.Component {
 
     updateBlog(story, heading) {
         const {blog} = this.props;
+
         const updatedBlog = {};
         updatedBlog.title = heading.title;
         updatedBlog.subTitle = heading.subtitle;
@@ -59,7 +60,7 @@ class BlogEditorUpdate extends React.Component {
             return (
                 <BaseLayout {...this.props.auth}>
                     <BasePage containerClass="editor-wrapper" className="blog-editor-page" >
-                        <SlateEditor initialValue={blog.story} isLoading={isSaving} save={this.updatedBlog} />                        
+                        <SlateEditor initialValue={blog.story} isLoading={isSaving} save={this.updateBlog} />                        
                     </BasePage>
                 </BaseLayout>
         )
