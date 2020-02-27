@@ -6,6 +6,11 @@ const authService = require('../services/auth');
 
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB, ROUTING TO CONTROLLER
+router.get('/me', authService.checkJWT, 
+                authService.checkRole('siteOwner'),
+                blogCtrl.getUserBlogs);
+
+
 router.get('/:id', blogCtrl.getBlogById);
 
 //ENDPOINT - POST DATA TO MONGODB, ROUTING TO CONTROLLER
