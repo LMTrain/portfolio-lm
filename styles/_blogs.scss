@@ -188,6 +188,21 @@
   .base-page {
     &.blog-user-page {
       padding-top: 50PX;
+
+      .user-blogs-list {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+          font-size: 20px;
+          a {
+            color: #424242;
+          }
+        }
+      }
+      .blog-status-title {
+        font-weight: bold;
+      }
     }
   }
   
