@@ -41,7 +41,7 @@ class Blogs extends React.Component {
                             </a>
                             </Link>
                             <p className="post-meta">Posted by
-                            <a href="#"> Filip Jerga </a>
+                            <a href="#"> Laycon Muriziq </a>
                             {moment().format('LLLL')}</p>
                         </div>
                         <hr></hr>
@@ -57,7 +57,7 @@ class Blogs extends React.Component {
                             </a>
                             </Link>
                             <p className="post-meta">Posted by
-                            <a href="#"> Filip Jerga </a>
+                            <a href="#"> Laycon Muriziq </a>
                             {moment().format('LLLL')}</p>
                         </div>
                         <hr></hr>
@@ -73,7 +73,7 @@ class Blogs extends React.Component {
                             </a>
                             </Link>
                             <p className="post-meta">Posted by
-                            <a href="#"> Filip Jerga </a>
+                            <a href="#"> Laycon Muriziq </a>
                             {moment().format('LLLL')}</p>
                         </div>
                         <hr></hr>

@@ -60,7 +60,7 @@ export default class Header extends React.Component {
                <div>
                     <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
                          <NavbarBrand className="port-navbar-brand" href="/">
-                         <Image src="../../static/images/linkedin1.jpg" roundedCircle fluid />
+                         <Image src="../../static/images/linkedin1.jpg" width="120" height="160" roundedCircle fluid />
                          <span>LAYCON MURIZIQ</span>
                          {/* <span>{userName}</span> */}
                          {/* <Circle r={50} fill={{url:'https://lmtrain.github.io/lm-images/assets/images/futurecar17.jpg'}} stroke={{color:'white'}} strokeWidth={2} /> */}
