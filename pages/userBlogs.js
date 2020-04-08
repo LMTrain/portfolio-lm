@@ -5,9 +5,9 @@ import { Container, Row, Col } from 'reactstrap';
 import PortButtonDropdown from '../components/ButtonDropdown';
 
 import withAuth from '../components/hoc/withAuth';
-import { Link } from '../routes';
+import { Link, Router } from '../routes';
 
-import { getUserBlogs } from '../actions';
+import { getUserBlogs, updateBlog } from '../actions';
 
 class UserBlogs extends React.Component {
 
@@ -22,8 +22,14 @@ class UserBlogs extends React.Component {
         return {blogs};
     }
 
-    changeBlogStatus() {
-        alert('Changing blog Status');
+    changeBlogStatus(status, blogId) {        
+        updateBlog({status}, blogId)
+            .then(() => {
+                Router.pushRoute('/userblogs');
+        })
+        .catch(err => {
+            console.error(err.message);
+        })
     }
 
     deleteBlog() {
@@ -42,15 +48,16 @@ class UserBlogs extends React.Component {
     }
 
     createStatus(status) {
-        return status === 'draft' ? 'Publish Story' : 'Make a draft';
-        // return status === 'draft' ? {view: 'Publish Story', value: 'published'} : {view: 'Make a draft', value: 'draft'};
+        // return status === 'draft' ? 'Publish Story' : 'Make a draft';
+        return status === 'draft' ? {view: 'Publish Story', value: 'published'} 
+                                  : {view: 'Make a draft', value: 'draft'};
     }
 
     dropdownOptions = (blog) => {
         const status = this.createStatus(blog.status);
 
         return [
-            {text: status, handlers: { onClick: () => this.changeBlogStatus() }},
+            {text: status.view, handlers: { onClick: () => this.changeBlogStatus(status.value, blog._id) }},
             {text: 'Delete', handlers: { onClick: () => this.deleteBlog() }}
         ]
     }
@@ -75,8 +82,7 @@ class UserBlogs extends React.Component {
     }
 
     render () {
-        const {blogs} = this.props;
-        console.log(blogs)
+        const {blogs} = this.props;   
         const {published, drafts} = this.separateBlogs(blogs);
         return (
             <BaseLayout {...this.props.auth} headerType={'landing'} >

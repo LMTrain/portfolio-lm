@@ -3,6 +3,16 @@ const slugify = require('slugify');
 const AsyncLock = require('async-lock');
 const lock = new AsyncLock;
 
+exports.getBlogs = (req, res) => {
+
+    Blog.find({status: 'published'}, function(err, publishedBlogs) {
+        if (err) {
+            return res.status(422).send(err);
+        }
+        return res.json({publishedBlogs});
+    });
+}
+
 //ENDPOINT - GET ALL DATA FROM MONGODB
 // exports.getBlog = (req, res) => {
 
@@ -84,7 +94,7 @@ exports.createBlog = (req, res) => {
                 blog.userId = req.user.sub;
                 blog.author = req.user.name;
             }
-            console.log(blogData);
+       
             blog.save((err, createdBlog) => {
                 setTimeout(() => done(), 5000);
                 if (err) {
@@ -98,8 +108,18 @@ exports.createBlog = (req, res) => {
         });    
     } else {
         return res.status(422).send({message: 'Blog is Saving...'});
-    }
-    
+    }    
+}
+
+exports.deleteBlog = (req, res) => {
+    const blogId = req.params.id;
+
+    Blog.deleteOne({_id: blogId}, function(err) {
+        if (err) {
+            return res.status(422).send(err);
+        }
+        res.json({status: 'deleted'});
+    })
 }
 
 //ENDPOINT - UPDATE DATA IN MONGODB

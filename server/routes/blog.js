@@ -29,9 +29,9 @@ router.patch('/:id', authService.checkJWT,
 //                         authService.checkRole('siteOwner'), 
 //                         portfolioCtrl.updatePortfolio);
 
-// //ENDPOINT - DELETE DATA IN MONGODB, ROUTING TO CONTROLLER
-// router.delete('/:id',  authService.checkJWT, 
-//                         authService.checkRole('siteOwner'),
-//                         portfolioCtrl.deletePortfolio);
+//ENDPOINT - DELETE DATA IN MONGODB, ROUTING TO CONTROLLER
+router.delete('/:id',  authService.checkJWT, 
+                        authService.checkRole('siteOwner'),
+                        blogCtrl.deleteBlog);
 
 module.exports = router;
