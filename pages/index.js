@@ -11,12 +11,37 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isFlipping: false
+        }
+
         this.roles = ['System Administrator', 'Full-Stack Web Developer', 'React.js', 'Next.js', 'Angular'];
+    }
+
+
+    componentDidMount() {
+        this.animateCard();
+    }
+
+    componentWillLeave() {
+        this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
+    }
+
+
+    animateCard() {
+        setInterval(() => {
+            this.cardAnimationInterval = setInterval(() => {
+                this.setState({
+                    isFlipping : !this.state.isFlipping
+                });
+            })
+        }, 2000)
     }
 
     render() {     
 
         const { isAuthenticated, user } = this.props.auth;
+        const { isFlipping }= this.state;
 
         return (
             <BaseLayout className="cover" {...this.props.auth} headerType="index">
@@ -29,7 +54,7 @@ class Index extends React.Component {
                         <Row>
                             <Col md="6">
                                 <div className="hero-section">
-                                    <div className={`flipper`}>
+                                    <div className={`flipper ${isFlipping ? 'isFlipping' : ''}` }>
                                         <div className="back">
                                             <div className="hero-section-content">
                                                 <h2> Full Stack Web Developer </h2>
@@ -49,7 +74,7 @@ class Index extends React.Component {
                             <Col md="6" className="hero-welcome-wrapper">
                                 <div className="hero-welcome-text">
                                     <h1>
-                                        { isAuthenticated && <span><b>{user.name}</b></span> }
+                                        { isAuthenticated && <span></span> }
                                         Welcome to the portfolio website of Laycon Muriziq.
                                         Get informed, collaborate and discover projects I was working on through the years!
                                     </h1>
