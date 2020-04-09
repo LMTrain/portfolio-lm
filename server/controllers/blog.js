@@ -13,6 +13,16 @@ exports.getBlogs = (req, res) => {
     });
 }
 
+exports.getBlogBySlug = (req, res) => {
+    const slug = req.params.slugs;
+
+    Blog.find({slug}, function(err, foundBlog) {
+        if (err) {
+            return res.status(422).send(err);
+        }
+        return res.json(foundBlog);
+    });
+}
 //ENDPOINT - GET ALL DATA FROM MONGODB
 // exports.getBlog = (req, res) => {
 

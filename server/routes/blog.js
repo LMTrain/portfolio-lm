@@ -15,6 +15,8 @@ router.get('/me', authService.checkJWT,
 
 router.get('/:id', blogCtrl.getBlogById);
 
+router.get('/s/:slug', blogCtrl.getBlogBySlug);
+
 //ENDPOINT - POST DATA TO MONGODB, ROUTING TO CONTROLLER
 router.post('', authService.checkJWT, 
                 authService.checkRole('siteOwner'), 
