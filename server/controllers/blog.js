@@ -29,8 +29,7 @@ exports.getBlogs = (req, res) => {
 
 //ENDPOINT - GET DATA BY ID FROM MONGODB
 exports.getBlogById = (req, res) => {  
-    const blogId = req.params.id;
-    console.log(blogId);
+    const blogId = req.params.id;   
     Blog.findById(blogId, (err, foundBlog) => {
         if (err) {
             return res.status(422).send(err);

@@ -83,6 +83,12 @@ export const getBlogById = (blogId) => {
     return axiosInstance.get(`/blogs/${blogId}`).then(response => response.data);
 }
 
+export const deleteBlog = (blogId) => {
+    return axiosInstance.delete(`/blogs/${blogId}`, setAuthHeader())
+            .then(response => response.data)
+            .catch(err => rejectPromise(err));
+}
+
 
 // export const getSecretDataServer = async (req) => {
 //     return await axios.get('http://localhost:3000//api/v1/secret', setAuthHeader(req)).then(response =>  response.data);

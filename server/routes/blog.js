@@ -5,6 +5,8 @@ const blogCtrl = require('../controllers/blog')
 const authService = require('../services/auth');
 
 
+router.get('', blogCtrl.getBlogs);
+
 //ENDPOINT - GET DATA BY ID FROM MONGODB, ROUTING TO CONTROLLER
 router.get('/me', authService.checkJWT, 
                 authService.checkRole('siteOwner'),
