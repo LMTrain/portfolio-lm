@@ -7,6 +7,14 @@ import { Link } from '../routes';
 import { getBlogs } from '../actions';
 import moment from 'moment';
 
+function shortenText(text, maxLength) {
+    if (text && text.length > maxLength) {
+        return `${text.substring(0, maxLength = 100)}...`;
+    }
+    return text;
+
+}
+
 class Blogs extends React.Component {
 
     static async getInitialProps({req}) {
@@ -29,7 +37,7 @@ class Blogs extends React.Component {
                            {blog.title}
                         </h2>
                         <h3 className="post-subtitle">
-                           {blog.subTitle}
+                           {shortenText(blog.subTitle)}
                         </h3>
                     </a>
                     </Link>
