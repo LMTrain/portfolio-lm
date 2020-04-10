@@ -89,10 +89,12 @@ export default class Header extends React.Component {
      render() {         
           // console.log(this.props)
           const { isAuthenticated, user, className, userName } = this.props;
+          const { isOpen } = this.state;
 
+          const menuOpenClass = isOpen ? 'menu-open' : 'menu-close';
           return (
                <div>
-                    <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
+                    <Navbar className={`port-navbar port-nav-base absolute ${className} ${menuOpenClass}`} color="transparent" dark expand="md">
                          <NavbarBrand className="port-navbar-brand" href="/">
                          <Image src="../../static/images/linkedin1.jpg" width="120" height="160" roundedCircle fluid />
                          <span>LAYCON MURIZIQ</span>

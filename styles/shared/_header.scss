@@ -50,3 +50,14 @@
   padding: 5px;
   background-color: $secondary !important;
 }
+.menu-open {
+  .bg-transparent.menu-open {
+    background-color: brown !important;
+  }
+}
+
+.menu-open {
+  .bg-transparent.menu-close {
+    transition: 1s;
+  }
+}
