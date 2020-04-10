@@ -71,7 +71,7 @@ class Portfolios extends React.Component {
             <BaseLayout title="Laycon Muriziq - See My Portfolio" {...this.props.auth}>
                 <BasePage className="portfolio-page" title="Portfolios">
                     { isAuthenticated && isSiteOwner &&
-                        <Button onClick={() => Router.pushRoute('/portfolioNew')}
+                        <Button onClick={() => Router.pushRoute('/portfolios/new')}
                                 color="success" 
                                 className="create-port-btn">Create Portfolio
                         </Button>

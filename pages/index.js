@@ -39,7 +39,7 @@ class Index extends React.Component {
                 });
                
             })
-        }, 8000); 
+        }, 5000); 
              
     }
     
