@@ -15,7 +15,7 @@ class Index extends React.Component {
             isFlipping: false
         }
 
-        this.roles = ['System Administrator', 'Full-Stack Web Developer', 'React.js', 'Next.js', 'Angular'];
+        this.roles = ['System Administrator', 'Full-Stack Web Developer', 'React.js', 'Next.js', 'Angular', 'JavaScript', 'C##'];
     }
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 // import { Circle } from 'react-shapes';
 import Image from 'react-bootstrap/Image'
 import Link from 'next/link';
+import ActiveLink from '../ActiveLink';
 import {
   Collapse,
   Navbar,
@@ -16,9 +17,11 @@ import auth0 from '../../services/auth0';
 const BsNavLink = (props) => {     
      const { route, title } = props;
      return (
-          <Link href={route}>
-               <a className="nav-link port-navbar-link"> {title}</a>
-          </Link>
+          <ActiveLink activeClassName="active" route={route}>
+               <a className="nav-link port-navbar-link"> {title} </a>
+          </ActiveLink>
+
+         
      )
 }
 
@@ -70,7 +73,7 @@ export default class Header extends React.Component {
                          </NavbarBrand>
                          <NavbarToggler onClick={this.toggle} />
                          <Collapse isOpen={this.state.isOpen} navbar>
-                              <Nav className="ml-auto" navbar style={{color: "brown"}}>
+                              <Nav className="ml-auto" navbar>
                                    <NavItem className="port-navbar-item">
                                         <BsNavLink route="/" title="Home" />              
                                    </NavItem>
