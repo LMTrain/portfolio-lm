@@ -52,7 +52,10 @@ class Blogs extends React.Component {
     render() {
         const {blogs} = this.props;
         return (
-            <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
+            <BaseLayout {...this.props.auth} 
+                        headerType={'landing'} 
+                        className="blog-listing-page"
+                        title="Laycon Muriziq - Blogs to Read">
                 <div className="masthead" style={{"backgroundImage": "url('/static/images/home-bg.jpg')"}}>
                     <div className="overlay"></div>
                     <Container>
