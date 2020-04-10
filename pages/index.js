@@ -3,7 +3,7 @@ import Typed from 'react-typed';
 // import '../styles/main.scss';
 import BaseLayout from '../components/layout/BaseLayout';
 
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 
 class Index extends React.Component {
@@ -23,28 +23,33 @@ class Index extends React.Component {
         this.animateCard();
     }
 
-    componentWillLeave() {
+    // componentWillLeave() {
+    //     this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
+    // }
+
+    componentWillUnmount() {
         this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
     }
-
 
     animateCard() {
         setInterval(() => {
             this.cardAnimationInterval = setInterval(() => {
                 this.setState({
-                    isFlipping : !this.state.isFlipping
+                    isFlipping : true
                 });
+               
             })
-        }, 2000)
+        }, 8000); 
+             
     }
+    
 
-    render() {     
-
+    render() {
         const { isAuthenticated, user } = this.props.auth;
         const { isFlipping }= this.state;
 
         return (
-            <BaseLayout className="cover" {...this.props.auth} headerType="index">
+            <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth} headerType="index">
                 <div className="main-section">
                     <div className="background-image">
                         <img src="/static/images/background-index.png" />
@@ -55,7 +60,7 @@ class Index extends React.Component {
                             <Col md="6">
                                 <div className="hero-section">
                                     <div className={`flipper ${isFlipping ? 'isFlipping' : ''}` }>
-                                        <div className="back">
+                                        <div className="front" onClick={() => this.animateCard()} title="Click to flipp">
                                             <div className="hero-section-content">
                                                 <h2> Full Stack Web Developer </h2>
                                                 <div className="hero-section-content-intro">
@@ -63,7 +68,20 @@ class Index extends React.Component {
                                                 </div>
                                             </div>
                                             {/* <img className="image" src="/static/images/section-1.png"/> */}
-                                            <img className="image" src="../static/images/supernova.webp"/>
+                                            <img className="image" src="../static/images/supernova.jpg"/>
+                                            <div className="shadow-custom">
+                                                <div className="shadow-inner"> </div>
+                                            </div>
+                                        </div>
+                                        <div className="back" onClick={() => this.animateCard()} title="Click to flipp">
+                                            <div className="hero-section-content">
+                                                <h2> System Administrator </h2>
+                                                <div className="hero-section-content-intro">
+                                                    In ERP Systems and Application Integration
+                                                </div>
+                                            </div>
+                                            {/* <img className="image" src="/static/images/section-2.png"/> */}
+                                            <img className="image" src="../static/images/space1.jpg"/>
                                             <div className="shadow-custom">
                                                 <div className="shadow-inner"> </div>
                                             </div>
