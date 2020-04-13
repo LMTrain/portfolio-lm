@@ -18,6 +18,16 @@ export default class PortfolioCard extends React.Component {
     }
 
     render() {
+        function truncateString(str, num) {    
+            if (str.length > num && num > 3) {
+                    return str.slice(0, (num - 3)) + '...';
+                } else if (str.length > num && num <= 3) {
+                    return str.slice(0, num) + '...';
+                } else {
+                return str;
+            }    
+          }             
+                  
         const { portfolio, children } = this.props;
         const { isOpen } = this.state;
         return (          
@@ -28,7 +38,7 @@ export default class PortfolioCard extends React.Component {
                     <CardBody>
                         <p className="portfolio-card-text"> {portfolio.location} </p>
                         <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
-                        <CardText className="portfolio-card-text">{portfolio.description}</CardText>
+                        <CardText className="portfolio-card-text">{portfolio.description = truncateString(portfolio.description, 750)}</CardText>
                         <div className="readMore"> 
                             { children }
                         </div>

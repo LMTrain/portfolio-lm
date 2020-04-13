@@ -1,28 +1,89 @@
-import React from 'react';
+import React from 'react'
 import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
-import {Row, Col} from 'reactstrap';
+import { Link } from '../routes';
+import { Col, Row, Button} from 'reactstrap';
+import PortfolioCard from '../components/portfolios/PortfolioCard';
+import { Router } from '../routes';
+
+import { getPortfolios, deletePortfolio } from '../actions';
 
 class Cv extends React.Component {
 
-    render() {
-        return (
-            <BaseLayout {...this.props.auth}>
-                <BasePage title="Preview of My Resume" className="cv-page"> 
-                <Row>
-                    <Col md={{size: 12}}>
-                        <div className="cv-title">
-                            <a download="laycon_muriziq.pdf" className="btn btn-success" href="/static/laycon_muriziq.pdf">
-                                Download
-                            </a>
-                        </div>
-                        <iframe style={{width: '100%', height: '1000px'}} scr="/static/laycon_muriziq.pdf">
-                        </iframe>  
-                    </Col>
-                </Row>                                 
-                              
-                </BasePage>
-            </BaseLayout>
+    static async getInitialProps() {            
+        let portfolios = [];
+
+        try {
+            portfolios = await getPortfolios();
+        } catch(err) {
+            console.error(err);
+        }
+
+        return {portfolios};
+    }
+    
+    navigateToEdit(portfolioId, e) {
+        e.stopPropagation();
+        Router.pushRoute(`/portfolios/${portfolioId}/edit`)
+    }
+    
+    displayDeleteWarning(portfolioId, e) {
+        e.stopPropagation();
+        const isConfirm = confirm('Are you sure you want to delete this Work Experience?');
+
+        if (isConfirm) {            
+            this.deletePortfolio(portfolioId);
+        }
+    }
+
+    deletePortfolio(portfolioId) {
+        deletePortfolio(portfolioId)
+        .then(() => {
+            Router.pushRoute('/portfolios');
+        })
+        .catch(err => console.error(err));
+
+    }
+
+    renderPortfolios(portfolios) {
+        const { isAuthenticated, isSiteOwner } = this.props.auth;
+        return portfolios.map((portfolio, index) => {          
+            return (
+                <Col key={index} md="4">
+                   <PortfolioCard portfolio={portfolio}>
+                   { isAuthenticated && isSiteOwner &&
+                        <>
+                            <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
+                            <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
+                        </>
+                    }
+                   </PortfolioCard> 
+                </Col>
+            )
+        })
+    }
+
+    render() {        
+        const { portfolios } = this.props;
+        const { isAuthenticated, isSiteOwner } = this.props.auth;
+      
+        return (            
+            <BaseLayout cannonical="/portfolios"
+                        title="Laycon Muriziq - See My Portfolio" 
+                        {...this.props.auth}>
+                <BasePage className="portfolio-page" title="Resume">
+                    { isAuthenticated && isSiteOwner &&
+                        <Button onClick={() => Router.pushRoute('/portfolios/new')}
+                                color="success" 
+                                className="create-port-btn">Add Work Experience
+                        </Button>
+                    }
+                    <Row>
+                        { this.renderPortfolios(portfolios) }
+                    
+                    </Row>
+                </BasePage>                
+            </BaseLayout>            
         )
     }
 }
