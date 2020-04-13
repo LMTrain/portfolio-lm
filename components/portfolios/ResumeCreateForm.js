@@ -16,18 +16,19 @@ const validateInputs = (values) => {
       errors[key] = `Field ${key} is required!`;
     }
   });
- 
+
+  const startDate = moment(values.startDate);
   const endDate = moment(values.endDate);
 
-  if  (endDate === null) {
-    errors.endDate = 'Completion Date cannot be empty!!!';
+  if  (startDate && endDate && endDate.isBefore(startDate)) {
+    errors.endDate = 'End Date cannot before start date!!!';
   }
    
   return errors;
 }
 
 
-const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
+const ResumeCreateForm = ({initialValues, onSubmit, error}) => (
   <div>    
     <Formik
       initialValues={initialValues}
@@ -38,62 +39,60 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
         <Form>            
           <Field
             type="text" 
-            name="category" 
-            label="Category"
+            name="title" 
+            label="Title"
             component={PortInput}
           />        
           
           <Field 
             type="text" 
-            name="client" 
-            label="Client" 
+            name="company" 
+            label="Company" 
             component={PortInput}
-          />
-        
-        <Field 
-            name="completion" 
-            label="Completion"
-            // canBeDisabled={true}               
-            initialDate={initialValues.endDate}
-            component={PortDate} 
           />
         
           <Field 
             type="text" 
-            name="role" 
-            label="Role" 
+            name="location" 
+            label="Location" 
+            component={PortInput}
+          />
+        
+          <Field 
+            type="text" 
+            name="position" 
+            label="Position" 
             component={PortInput}
           />
 
           <Field 
-            type="text" 
-            name="repositoryLink" 
-            label="Repository Link" 
+            type="textarea" 
+            name="shortDescription" 
+            label="Brief Experience" 
             component={PortInput} 
           />        
-          
-          <Field 
-            type="text" 
-            name="deployedLink" 
-            label="Deployed Link" 
-            component={PortInput} 
-          /> 
-
-          <Field 
-            type="text" 
-            name="imageLink" 
-            label="Image Link" 
-            component={PortInput} 
-          />               
           
           <Field 
             type="textarea" 
-            name="projectDescription" 
-            label="Project Description" 
+            name="description" 
+            label="Detail Experience" 
             component={PortInput} 
           />        
+          
+          <Field 
+            name="startDate"
+            label="Start Date"
+            initialDate={initialValues.startDate}
+            component={PortDate} 
+          />        
         
-         
+          <Field 
+            name="endDate" 
+            label="End Date"
+            canBeDisabled={true}               
+            initialDate={initialValues.endDate}
+            component={PortDate} 
+          />
           { error && 
             <Alert color="danger">
               {error}
@@ -109,7 +108,7 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
   </div>
 );
 
-export default PortfolioCreateForm;
+export default ResumeCreateForm;
 
 
 

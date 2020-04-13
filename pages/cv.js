@@ -3,7 +3,7 @@ import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
 import { Link } from '../routes';
 import { Col, Row, Button} from 'reactstrap';
-import PortfolioCard from '../components/portfolios/PortfolioCard';
+import ResumeCard from '../components/portfolios/ResumeCard';
 import { Router } from '../routes';
 
 import { getPortfolios, deletePortfolio } from '../actions';
@@ -50,14 +50,14 @@ class Cv extends React.Component {
         return portfolios.map((portfolio, index) => {          
             return (
                 <Col key={index} md="4">
-                   <PortfolioCard portfolio={portfolio}>
+                   <ResumeCard portfolio={portfolio}>
                    { isAuthenticated && isSiteOwner &&
                         <>
                             <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
                             <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
                         </>
                     }
-                   </PortfolioCard> 
+                   </ResumeCard> 
                 </Col>
             )
         })
@@ -72,12 +72,22 @@ class Cv extends React.Component {
                         title="Laycon Muriziq - See My Portfolio" 
                         {...this.props.auth}>
                 <BasePage className="portfolio-page" title="Resume">
-                    { isAuthenticated && isSiteOwner &&
-                        <Button onClick={() => Router.pushRoute('/portfolios/new')}
-                                color="success" 
-                                className="create-port-btn">Add Work Experience
-                        </Button>
-                    }
+                    <Row>
+                        <Col md={{size: 12}} style={{display: "flex"}}>
+                            { isAuthenticated && isSiteOwner &&
+                                <Button onClick={() => Router.pushRoute('/portfolios/cvnew')}
+                                        color="success" 
+                                        className="create-port-btn">Add Work Experience
+                                </Button>
+                            }
+                            <div style={{color: "transparent"}}><a>Dn</a></div>
+                            <div className="cv-title">
+                                <a download="laycon_muriziq.pdf" className="btn btn-success" href="/static/laycon_muriziq.pdf">
+                                    Download Resume
+                                </a>
+                            </div>
+                        </Col>
+                    </Row>
                     <Row>
                         { this.renderPortfolios(portfolios) }
                     

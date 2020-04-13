@@ -49,7 +49,7 @@ class Portfolios extends React.Component {
         const { isAuthenticated, isSiteOwner } = this.props.auth;
         return portfolios.map((portfolio, index) => {          
             return (
-                <Col key={index} md="4">
+                <Col key={index} md="12">
                    <PortfolioCard portfolio={portfolio}>
                    { isAuthenticated && isSiteOwner &&
                         <>
