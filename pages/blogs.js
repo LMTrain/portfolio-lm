@@ -85,28 +85,28 @@ class Blogs extends React.Component {
                     <Container>
                         <Row>
                         <div className="col-lg-8 col-md-10 mx-auto">
-                            <ul className="list-inline text-center">
+                            <ul className="list-inline text-center">                            
                             <li className="list-inline-item">
-                                <a href="#">
+                                <a href="https://www.linkedin.com/in/laycon-muriziq-fi503362fmsm" target="_blank" title="LinkedIn">
                                 <span className="fa-stack fa-lg">
                                     <i className="fas fa-circle fa-stack-2x"></i>
-                                    <i className="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    <i className="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                                 </span>
                                 </a>
                             </li>
                             <li className="list-inline-item">
-                                <a href="#">
-                                <span className="fa-stack fa-lg">
-                                    <i className="fas fa-circle fa-stack-2x"></i>
-                                    <i className="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                </span>
-                                </a>
-                            </li>
-                            <li className="list-inline-item">
-                                <a href="#">
+                                <a href="https://github.com/LMTrain" title="Github" target="_blank">
                                 <span className="fa-stack fa-lg">
                                     <i className="fas fa-circle fa-stack-2x"></i>
                                     <i className="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li className="list-inline-item">
+                                <a href="https://dribbble.com/LMTrain" title="Dribble" target="_blank">
+                                <span className="fa-stack fa-lg">
+                                    <i className="fas fa-circle fa-stack-2x"></i>
+                                    <i className="fab fa-dribbble fa-stack-1x fa-inverse"></i>
                                 </span>
                                 </a>
                             </li>

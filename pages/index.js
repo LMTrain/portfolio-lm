@@ -70,7 +70,7 @@ class Index extends React.Component {
                                                 </div>
                                             </div>
                                             {/* <img className="image" src="/static/images/section-1.png"/> */}
-                                            <img className="image" src="../static/images/supernova.jpg"/>
+                                            <img  alt="My Picture" className="image" src="../static/images/supernova.jpg"/>
                                             <div className="shadow-custom">
                                                 <div className="shadow-inner"> </div>
                                             </div>
@@ -83,7 +83,7 @@ class Index extends React.Component {
                                                 </div>
                                             </div>
                                             {/* <img className="image" src="/static/images/section-2.png"/> */}
-                                            <img className="image" src="../static/images/space1.jpg"/>
+                                            <img alt="My Picture" className="image" src="../static/images/space1.jpg"/>
                                             <div className="shadow-custom">
                                                 <div className="shadow-inner"> </div>
                                             </div>
@@ -115,9 +115,9 @@ class Index extends React.Component {
                                     cursorChar="|"
                                     />
                                 <div className="hero-welcome-bio">
-                                    <h1>
+                                    <h2>
                                         Let's take a look on my work.
-                                    </h1>
+                                    </h2>
                                 </div>
                             </Col>
                         </Row>
