@@ -1,10 +1,11 @@
 const routes = require('next-routes')
                                                     
 module.exports = routes()
-.add('cvNew', '/portfolios/cvnew')
+.add('CvNew', '/resumes/cvnew')
 .add('portfolioNew', '/portfolios/new')                                  
 .add('portfolio', '/portfolio/:id')  
 .add('portfolioEdit', '/portfolios/:id/edit')
+.add('resumeEdit', '/resumes/:id/edit')
 .add('userBlogs', '/blogs/dashboard')
 .add('blogEditor', '/blogs/new')
 .add('blogDetails', '/blogs/:slug') 

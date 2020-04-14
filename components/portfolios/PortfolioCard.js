@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardHeader, CardBody, CardText, CardTitle, Button} from 'reactstrap';
-import PortfolioCardDetail from './PortfolioCardDetail';
+// import ResumeCardDetail from '../resumes/ResumeCardDetail';
 import moment from 'moment';
 
 export default class PortfolioCard extends React.Component {
@@ -18,28 +18,22 @@ export default class PortfolioCard extends React.Component {
         });
     }
 
-    render() {function truncateString(str, num) {    
-        if (str.length > num && num > 3) {
-                return str.slice(0, (num - 3)) + '...';
-            } else if (str.length > num && num <= 3) {
-                return str.slice(0, num) + '...';
-            } else {
-            return str;
-        }    
-      }
+    render() {
        
         const { portfolio, children } = this.props;
         const { isOpen } = this.state;
         return (          
-            <span title="Click for Details" onClick={this.handleToggle}>
-                <PortfolioCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/>
+            <span title="Visit Website" onClick={<a href={portfolio.deployedLink} target="_blank"></a>}>
+                {/* <ResumeCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/> */}
                 <Card className="portfolio-project-card">
-                    <CardHeader className="portfolio-card-header">{portfolio.projectName}</CardHeader>
+                    <CardHeader className="portfolio-project-card-header">{portfolio.projectName}</CardHeader>
                     <CardBody>
                         <div>
-                            <img alt="Project Image" width="950" height="500" src={portfolio.imageLink} />
+                            <a href={portfolio.deployedLink} target="_blank">
+                                <img alt="Project Image" width="950" height="500" src={portfolio.imageLink} />
+                            </a>
                         </div>                      
-                        <CardText className="portfolio-card-text">
+                        <CardText className="portfolio-project-card-text">
                             <p><b>Category : </b>{portfolio.category} </p>
                             <p><b>Client : </b>{portfolio.client}</p>
                             <p><b>Completion : </b>{moment(portfolio.completion).format('MMMM YYYY')}</p>
@@ -48,7 +42,7 @@ export default class PortfolioCard extends React.Component {
                             <p><b>Deployed Link : </b><a href={portfolio.deployedLink} target="_blank">{portfolio.deployedLink}</a></p>
                             <p><b>Description : </b>{portfolio.projectDescription}</p>                       
                         </CardText>
-                        <div className="readMore"> 
+                        <div className="readMore">
                             { children }
                         </div>
                     </CardBody>                    

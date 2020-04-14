@@ -17,6 +17,7 @@ const bodyParser = require('body-parser');
 
 const bookRoutes = require('./routes/book');
 const porfolioRoutes = require('./routes/portfolio');
+const resumeRoutes = require('./routes/resume');
 const blogRoutes = require('./routes/blog');
 
 const robotsOptions = {
@@ -57,6 +58,7 @@ app.prepare()
 
     server.use('/api/v1/books', bookRoutes);
     server.use('/api/v1/portfolios', porfolioRoutes);
+    server.use('/api/v1/resumes', resumeRoutes);
     server.use('/api/v1/blogs', blogRoutes);
 
     server.get('/robots.txt', (req, res) => {

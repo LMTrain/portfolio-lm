@@ -58,6 +58,31 @@ export const deletePortfolio = (portfolioId) => {
     return axiosInstance.delete(`/portfolios/${portfolioId}`, setAuthHeader()).then(response => response.data);
 }
 
+//--------------------RESUME ACTIONS-----------------
+
+export const getResumes = async() => {
+    return await axiosInstance.get('/portfolios').then(response => response.data);
+}
+
+export const getResumeById = async (id) => {
+    return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
+}
+
+export const createResume = async (resumeData) => {
+    return await axiosInstance.post('/portfolios', resumeData, setAuthHeader())
+    .then(response => response.data)
+    .catch(error => rejectPromise(error))
+}
+
+export const updateResume = async (resumeData) => {
+    return await axiosInstance.patch(`/portfolios/${resumeData._id}`, resumeData, setAuthHeader())
+    .then(response => response.data)
+    .catch(error => rejectPromise(error))
+}
+
+export const deleteResume = (resumeId) => {
+    return axiosInstance.delete(`/portfolios/${resumeId}`, setAuthHeader()).then(response => response.data);
+}
 
 //-------------------BLOG ACTIONS--------------------
 

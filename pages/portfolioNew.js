@@ -8,13 +8,16 @@ import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
 import moment from 'moment';
 
-const INITIAL_VALUES = { title: '',
-                         company: '',
-                         location: '',
-                         position: '',
-                         description: '', 
-                         startDate: moment(), 
-                         endDate: moment() };
+const INITIAL_VALUES = { projectName: '',
+                            category: '',
+                            client: '',
+                            role: '',
+                            repositoryLink: '', 
+                            deployedLink: '',
+                            imageLink: '',
+                            projectDescription: '',
+                            completion: moment() };
+                        
 
 class PortfolioNew extends React.Component {
 

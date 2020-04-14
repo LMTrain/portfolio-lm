@@ -3,58 +3,58 @@ import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
 import { Link } from '../routes';
 import { Col, Row, Button} from 'reactstrap';
-import ResumeCard from '../components/portfolios/ResumeCard';
+import ResumeCard from '../components/resumes/ResumeCard';
 import { Router } from '../routes';
 
-import { getPortfolios, deletePortfolio } from '../actions';
+import { getResumes, deleteResume } from '../actions';
 
 class Cv extends React.Component {
 
     static async getInitialProps() {            
-        let portfolios = [];
+        let resumes = [];
 
         try {
-            portfolios = await getPortfolios();
+            resumes = await getResumes();
         } catch(err) {
             console.error(err);
         }
 
-        return {portfolios};
+        return {resumes};
     }
     
-    navigateToEdit(portfolioId, e) {
+    navigateToEdit(resumeId, e) {
         e.stopPropagation();
-        Router.pushRoute(`/portfolios/${portfolioId}/edit`)
+        Router.pushRoute(`/resumes/${resumeId}/edit`)
     }
     
-    displayDeleteWarning(portfolioId, e) {
+    displayDeleteWarning(resumeId, e) {
         e.stopPropagation();
         const isConfirm = confirm('Are you sure you want to delete this Work Experience?');
 
         if (isConfirm) {            
-            this.deletePortfolio(portfolioId);
+            this.deleteResume(resumeId);
         }
     }
 
-    deletePortfolio(portfolioId) {
-        deletePortfolio(portfolioId)
+    deleteResume(resumeId) {
+        deleteResume(resumeId)
         .then(() => {
-            Router.pushRoute('/portfolios');
+            Router.pushRoute('/cv');
         })
         .catch(err => console.error(err));
 
     }
 
-    renderPortfolios(portfolios) {
+    renderResumes(resumes) {
         const { isAuthenticated, isSiteOwner } = this.props.auth;
-        return portfolios.map((portfolio, index) => {          
+        return resumes.map((resume, index) => {          
             return (
                 <Col key={index} md="4">
-                   <ResumeCard portfolio={portfolio}>
+                   <ResumeCard resume={resume}>
                    { isAuthenticated && isSiteOwner &&
                         <>
-                            <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
-                            <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
+                            <Button onClick={(e) => this.navigateToEdit(resume._id, e)} color="warning">Edit</Button>{' '}
+                            <Button onClick={(e) => this.displayDeleteWarning(resume._id, e)} color="danger">Delete</Button>
                         </>
                     }
                    </ResumeCard> 
@@ -64,18 +64,18 @@ class Cv extends React.Component {
     }
 
     render() {        
-        const { portfolios } = this.props;
+        const { resumes } = this.props;
         const { isAuthenticated, isSiteOwner } = this.props.auth;
       
         return (            
-            <BaseLayout cannonical="/portfolios"
-                        title="Laycon Muriziq - See My Portfolio" 
+            <BaseLayout cannonical="/resumes"
+                        title="Laycon Muriziq - See My Resume" 
                         {...this.props.auth}>
                 <BasePage className="portfolio-page" title="Resume">
                     <Row>
                         <Col md={{size: 12}} style={{display: "flex"}}>
                             { isAuthenticated && isSiteOwner &&
-                                <Button onClick={() => Router.pushRoute('/portfolios/cvnew')}
+                                <Button onClick={() => Router.pushRoute('/resumes/cvnew')}
                                         color="success" 
                                         className="create-port-btn">Add Work Experience
                                 </Button>
@@ -89,7 +89,7 @@ class Cv extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        { this.renderPortfolios(portfolios) }
+                        { this.renderResumes(resumes) }
                     
                     </Row>
                 </BasePage>                
