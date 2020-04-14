@@ -31,7 +31,8 @@ exports.getResumeById = (req, res) => {
 
 //ENDPOINT - POST DATA TO MONGODB
 exports.saveResume = (req, res) => {
-    const resumeData = req.body;   
+    const resumeData = req.body;
+    console.log("CONTROLLER", resumeData)   
     const userId = req.user && req.user.sub;
     const resume = new Resume(resumeData);
     resume.userId = userId;

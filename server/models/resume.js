@@ -13,7 +13,7 @@ const resumeSchema = new Schema({
     description: { type: String },
     shortDescription: { type: String },   
     startDate: { type: Date },
-    endDate: Date
+    endDate: { type: Date },
 });
 
 module.exports = mongoose.model('Resume', resumeSchema);

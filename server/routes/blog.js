@@ -23,15 +23,11 @@ router.post('', authService.checkJWT,
                 blogCtrl.createBlog);
 
 //ENDPOINT - GET ALL DATA FROM MONGODB, ROUTING TO CONTROLLER
-// router.get('', portfolioCtrl.getPortfolios);
 
 // //ENDPOINT - UPDATE DATA IN MONGODB, ROUTING TO CONTROLLER
 router.patch('/:id', authService.checkJWT, 
                 authService.checkRole('siteOwner'), 
                 blogCtrl.updateBlog);
-// router.patch('/:id', authService.checkJWT, 
-//                         authService.checkRole('siteOwner'), 
-//                         portfolioCtrl.updatePortfolio);
 
 //ENDPOINT - DELETE DATA IN MONGODB, ROUTING TO CONTROLLER
 router.delete('/:id',  authService.checkJWT, 

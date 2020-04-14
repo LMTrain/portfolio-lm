@@ -23,11 +23,13 @@ class Portfolios extends React.Component {
     }
     
     navigateToEdit(portfolioId, e) {
+        console.log("NAVIGATE", portfolioId)
         e.stopPropagation();
         Router.pushRoute(`/portfolios/${portfolioId}/edit`)
     }
     
     displayDeleteWarning(portfolioId, e) {
+        console.log("DISPLAY", portfolioId)
         e.stopPropagation();
         const isConfirm = confirm('Are you sure you want to delete this portfolio?');
 

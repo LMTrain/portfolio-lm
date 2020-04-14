@@ -3,7 +3,7 @@ import BaseLayout from '../components/layout/BaseLayout';
 import BasePage from '../components/BasePage';
 import ResumeCreateForm from '../components/resumes/ResumeCreateForm'
 import { Row, Col } from 'reactstrap';
-import { createPortfolio } from '../actions';
+import { createResume } from '../actions';
 import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
 import moment from 'moment';
@@ -23,10 +23,11 @@ class CvNew extends React.Component {
         this.state = {
             error: undefined
         }
-        this.savePortfolio = this.savePortfolio.bind(this);
+        this.saveResume = this.saveResume.bind(this);
     }
 
     saveResume(resumeData, {setSubmitting}) {
+        console.log("RESUMEDATA", resumeData)
         setSubmitting(true);
         createResume(resumeData)
         .then((resume) => {

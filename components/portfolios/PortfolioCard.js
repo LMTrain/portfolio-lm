@@ -23,7 +23,7 @@ export default class PortfolioCard extends React.Component {
         const { portfolio, children } = this.props;
         const { isOpen } = this.state;
         return (          
-            <span title="Visit Website" onClick={<a href={portfolio.deployedLink} target="_blank"></a>}>
+            <span title="Visit Website">
                 {/* <ResumeCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/> */}
                 <Card className="portfolio-project-card">
                     <CardHeader className="portfolio-project-card-header">{portfolio.projectName}</CardHeader>

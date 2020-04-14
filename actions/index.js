@@ -34,6 +34,7 @@ export const getSecretData = async (req) => {
    return await axiosInstance.get(url, setAuthHeader(req)).then(response =>  response.data);
 }
 
+//-------------- PORTFOLIO ACTION----------
 export const getPortfolios = async() => {
     return await axiosInstance.get('/portfolios').then(response => response.data);
 }
@@ -61,27 +62,27 @@ export const deletePortfolio = (portfolioId) => {
 //--------------------RESUME ACTIONS-----------------
 
 export const getResumes = async() => {
-    return await axiosInstance.get('/portfolios').then(response => response.data);
+    return await axiosInstance.get('/resumes').then(response => response.data);
 }
 
 export const getResumeById = async (id) => {
-    return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
+    return await axiosInstance.get(`/resumes/${id}`).then(response => response.data);
 }
 
 export const createResume = async (resumeData) => {
-    return await axiosInstance.post('/portfolios', resumeData, setAuthHeader())
+    return await axiosInstance.post('/resumes', resumeData, setAuthHeader())
     .then(response => response.data)
     .catch(error => rejectPromise(error))
 }
 
 export const updateResume = async (resumeData) => {
-    return await axiosInstance.patch(`/portfolios/${resumeData._id}`, resumeData, setAuthHeader())
+    return await axiosInstance.patch(`/resumes/${resumeData._id}`, resumeData, setAuthHeader())
     .then(response => response.data)
     .catch(error => rejectPromise(error))
 }
 
 export const deleteResume = (resumeId) => {
-    return axiosInstance.delete(`/portfolios/${resumeId}`, setAuthHeader()).then(response => response.data);
+    return axiosInstance.delete(`/resumes/${resumeId}`, setAuthHeader()).then(response => response.data);
 }
 
 //-------------------BLOG ACTIONS--------------------
