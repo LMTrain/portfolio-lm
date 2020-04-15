@@ -4,7 +4,7 @@ const Resume = require('../models/resume');
 exports.getResumes = (req, res) => {
 
     Resume.find({})
-            .sort({'startDate': 1})
+            .sort({"startDate":-1})
             .exec((err, allResumes) => {
         if (err) {
             return res.status(422).send(err);
@@ -36,7 +36,7 @@ exports.saveResume = (req, res) => {
     const userId = req.user && req.user.sub;
     const resume = new Resume(resumeData);
     resume.userId = userId;
-    console.log("THIS IS RESUME DATA", resumrData);
+    console.log("THIS IS RESUME DATA", resumeData);
 
     resume.save((err, createdResume) => {
         if (err) {

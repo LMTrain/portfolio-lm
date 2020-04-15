@@ -4,7 +4,7 @@ const Portfolio = require('../models/portfolio');
 exports.getPortfolios = (req, res) => {
 
     Portfolio.find({})
-            .sort({'startDate': 1})
+            .sort({'completion': -1})
             .exec((err, allPortfolios) => {
         if (err) {
             return res.status(422).send(err);
@@ -42,11 +42,12 @@ exports.getPortfolioById = (req, res) => {
 
 //ENDPOINT - POST DATA TO MONGODB
 exports.savePortfolio = (req, res) => {
-    const portfolioData = req.body;   
+    const portfolioData = req.body; 
+    console.log("PORTFOLIO", portfolioData)   
     const userId = req.user && req.user.sub;
     const portfolio = new Portfolio(portfolioData);
     portfolio.userId = userId;
-    console.log(portfolioData);
+    console.log("THIS IS PORTFOLIO", portfolioData);
 
     portfolio.save((err, createdPortfolio) => {
         if (err) {

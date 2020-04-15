@@ -79,7 +79,7 @@ class Index extends React.Component {
                                             <div className="hero-section-content">
                                                 <h2> System Administrator </h2>
                                                 <div className="hero-section-content-intro">
-                                                    In ERP Systems and Application Integration
+                                                    ERP Systems and Application Integration
                                                 </div>
                                             </div>
                                             {/* <img className="image" src="/static/images/section-2.png"/> */}

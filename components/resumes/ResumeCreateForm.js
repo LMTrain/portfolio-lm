@@ -93,6 +93,7 @@ const ResumeCreateForm = ({initialValues, onSubmit, error}) => (
             initialDate={initialValues.endDate}
             component={PortDate} 
           />
+          
           { error && 
             <Alert color="danger">
               {error}

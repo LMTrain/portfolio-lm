@@ -60,7 +60,7 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
         <Field 
             name="completion" 
             label="Completion"
-            // canBeDisabled={true}               
+            canBeDisabled={true}               
             initialDate={initialValues.endDate}
             component={PortDate} 
           />
