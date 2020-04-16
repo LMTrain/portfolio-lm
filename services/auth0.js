@@ -5,12 +5,15 @@ import axios from 'axios';
 
 import { getCookieFromReq } from '../helpers/utils';
 
+const CLIENT_ID = process.env.CLIENT_ID;
+
+
 class Auth0 {
 
-    constructor() {
+    constructor() {      
         this.auth0 = new auth0.WebAuth({
             domain:'dev-mt2g3wp7.auth0.com',
-            clientID: 'bGOaWGQAd73mPygXMen4XkptBMrglXRY',
+            clientID: CLIENT_ID,
             redirectUri: `${process.env.BASE_URL}/callback`,
             responseType: 'token id_token',
             scope: 'openid profile'
@@ -52,7 +55,7 @@ class Auth0 {
 
         this.auth0.logout({
             returnTo: '',
-            clientID: 'bGOaWGQAd73mPygXMen4XkptBMrglXRY'
+            clientID: CLIENT_ID
         })
     }
 

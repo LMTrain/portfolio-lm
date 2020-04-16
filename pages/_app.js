@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/main.scss';
 
-const namespace = 'http://localhost:3000';
+// const namespace = 'http://localhost:3000';
 
 export default class MyApp extends App {
     
@@ -22,7 +22,7 @@ export default class MyApp extends App {
         }
         // console.log(user);
 
-        const isSiteOwner = user && user[namespace + '/role'] === 'siteOwner';
+        const isSiteOwner = user && user[process.env.NAMESPACE + '/role'] === 'siteOwner';
 
         const auth = { user, isAuthenticated: !!user, isSiteOwner };
 

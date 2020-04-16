@@ -17,8 +17,7 @@ class Cv extends React.Component {
             resumes = await getResumes();
         } catch(err) {
             console.error(err);
-        }
-        console.log(resumes)
+        }        
         return {resumes};
     }
     

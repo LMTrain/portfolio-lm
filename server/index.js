@@ -85,9 +85,11 @@ app.prepare()
         }
     });
 
-    server.use(handle).listen(3000, (err) => {
+    const PORT = process.env.PORT || 3000;
+
+    server.use(handle).listen(PORT, (err) => {
         if (err) throw err
-        console.log('> Ready 0n http://localhost:3000')
+        console.log('> Ready 0n Port ' + PORT)
     })
 })
 .catch((ex) => {

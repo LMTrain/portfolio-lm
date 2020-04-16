@@ -15,11 +15,11 @@ const BaseLayout = (props) => {
         <meta name="keywords" content="Laycon Portfolio, Laycon Webdeveloper, Laycon Freelancing, Laycon Software developer" />
         <meta property="og:title" content="Laycon Muriziq-programmer, Web developer, ERP System Administrator"/>
         <meta property="og:locale" content="en-US" />
-        <meta property="og:url" content="http://laycon.herokuapp.com" />
+        <meta property="og:url" content={`${process.env.BASE_URL}`} />
         <meta property="og:type" content="website"  />
         <meta property="og:description" content="My Name is Laycon Muriziq, I'm a System Administrator & Full Stack Web Developer from Minneapolis, MN. 
         I aim to make a difference through my creative solution."  />
-       {cannonical && <link rel="cannonical" href={`http://localhost:3000${cannonical}`}/>}
+       {cannonical && <link rel="cannonical" href={`${process.env.BASE_URL}${cannonical}`}/>}
 
         <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
         <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
