@@ -14,7 +14,6 @@ exports.getBooks = (req, res) => {
 exports.saveBook = (req, res) => {
     const bookData = req.body;
     const book = new Book(bookData);
-    console.log(bookData);
 
     book.save((err, createdBook) => {
         if (err) {
@@ -27,24 +26,18 @@ exports.saveBook = (req, res) => {
 //ENDPOINT - UPDATE DATA IN MONGODB
 exports.updateBook = (req, res) => {
     const bookId = req.params.id;
-    const bookData = req.body;
-    console.log(bookId);
-    console.log(bookData);
+    const bookData = req.body;    
 
-    Book.findById(bookId, (err, foundBook) => {
-        console.log(foundBook);
+    Book.findById(bookId, (err, foundBook) => {  
         if (err) {
             return res.status(422).send(err);
         }
         foundBook.set(bookData);
         foundBook.save((err, savedBook) => {
-            console.log(savedBook);
             if (err) {
-                console.log(savedBook);
+      
                 return res.status(422).send(err);
-            }
-            console.log(savedBook);
-            console.log(foundBook);
+            }           
             return res.json(foundBook);
         });
     })
@@ -53,13 +46,11 @@ exports.updateBook = (req, res) => {
 //ENDPOINT - DELETE DATA IN MONGODB
 exports.deleteBook = (req, res) => {
     const bookId = req.params.id;
-    console.log(bookId);
 
     Book.deleteOne({_id: bookId}, (err, deletedBook) => {
         if (err) {                
             return res.status(422).send(err);
-        }
-        console.log(deletedBook);
+        }       
         return res.json({status: 'DELETED'});
     })
 }

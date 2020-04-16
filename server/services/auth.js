@@ -7,7 +7,7 @@ const jwksRsa = require('jwks-rsa');
 exports.checkJWT = jwt({ 
     secret: jwksRsa.expressJwtSecret({
         cache: true,
-        jwksRequestsPerMinute: 15,      
+        jwksRequestsPerMinute: 50,      
         jwksUri: 'https://dev-mt2g3wp7.auth0.com/.well-known/jwks.json'
       }),      
     audience: 'bGOaWGQAd73mPygXMen4XkptBMrglXRY',

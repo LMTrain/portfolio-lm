@@ -92,8 +92,7 @@ exports.updateBlog = (req, res) => {
 }
 
 //ENDPOINT - POST DATA TO MONGODB
-exports.createBlog = (req, res) => {
-    console.log(req)
+exports.createBlog = (req, res) => {  
     const lockId = req.query.lockId;
 
     if (!lock.isBusy(lockId)) {

@@ -27,7 +27,7 @@ class CvNew extends React.Component {
     }
 
     saveResume(resumeData, {setSubmitting}) {
-        console.log("RESUMEDATA", resumeData)
+     
         setSubmitting(true);
         createResume(resumeData)
         .then((resume) => {

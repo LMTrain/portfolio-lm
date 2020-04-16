@@ -52,8 +52,8 @@ const onClickBlock = (event, type, editor) => {
       return !!document.getClosest(block.key, parent => parent.type == type)
     })
 
-    console.log('isList', isList);
-    console.log('isType', isType);
+    // console.log('isList', isList);
+    // console.log('isType', isType);
 
     if (isList && isType) {
       editor

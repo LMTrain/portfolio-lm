@@ -15,8 +15,7 @@ class items extends React.Component {
         // let itemss = {}
         try {
             const response = await axios.get('https://api.walmartlabs.com/v1/search?&apiKey=vng9pukufs97mcyyjs5ps266&query=BELT&format=json');              itemss = response.data;    
-            this.setState({items: itemss})
-            console.log(response)            
+            this.setState({items: itemss})                     
         } catch(err) {
             console.error(err);
         }
@@ -24,8 +23,7 @@ class items extends React.Component {
         this.renderItems()               
     }        
     
-    renderItems() {
-        console.log("This is item in state", itemss)
+    renderItems() {       
         for ( var i = 0; i < 46; i++) {
             if (i === 20){
                 this.renderPosts(); 
@@ -49,8 +47,7 @@ class items extends React.Component {
     //     // })
     // }
 
-    renderPosts() {
-        console.log("THIS IS POSTS :", posts)
+    renderPosts() {       
         // console.log(posts[0].name)
         // return posts.map((post) => {
         //     console.log(post[0])

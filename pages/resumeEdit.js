@@ -11,13 +11,11 @@ import { Router } from '../routes';
 class ResumeEdit extends React.Component {
     static async getInitialProps({query}) { 
         let resume = {};        
-        try {
-            console.log(query.id)                 
+        try {                  
             resume = await getResumeById(query.id);         
         }   catch(error) {
             // console.error(err);
-        }
-        console.log('RESUME', resume);       
+        }         
         return {resume};
     }
 

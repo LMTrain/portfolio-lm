@@ -12,12 +12,12 @@ class PortfolioEdit extends React.Component {
     static async getInitialProps({query}) { 
         let portfolio = {};        
         try {
-            console.log(query.id)                 
+                     
             portfolio = await getPortfolioById(query.id);         
         }   catch(error) {
             // console.error(err);
         }
-        console.log('PORTFOLIO', portfolio);       
+            
         return {portfolio};
     }
 

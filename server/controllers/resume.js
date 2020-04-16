@@ -17,7 +17,6 @@ exports.getResumes = (req, res) => {
 //ENDPOINT - GET DATA BY ID FROM MONGODB
 exports.getResumeById = (req, res) => {  
     const resumeId = req.params.id;
-    console.log(resumeId);
     Resume.findById(resumeId)
                 .select('-__v')
                 .exec((err, foundResume) => {
@@ -31,12 +30,9 @@ exports.getResumeById = (req, res) => {
 
 //ENDPOINT - POST DATA TO MONGODB
 exports.saveResume = (req, res) => {
-    const resumeData = req.body;
-    console.log("CONTROLLER", resumeData)   
+    const resumeData = req.body;   
     const userId = req.user && req.user.sub;
-    const resume = new Resume(resumeData);
     resume.userId = userId;
-    console.log("THIS IS RESUME DATA", resumeData);
 
     resume.save((err, createdResume) => {
         if (err) {
@@ -51,14 +47,12 @@ exports.updateResume = (req, res) => {
     const resumeId = req.params.id;
     const resumeData = req.body;
    
-    Resume.findById(resumeId, (err, foundResume) => {
-        console.log("FOUND RESUME---", foundResume);
+    Resume.findById(resumeId, (err, foundResume) => { 
         if (err) {
             return res.status(422).send(err);
         }
         foundResume.set(resumeData);
-        foundResume.save((err, savedResume) => {
-            console.log("YES YES YES---", savedResume);
+        foundResume.save((err, savedResume) => {        
             if (err) {               
                 return res.status(422).send(err);
             }           
@@ -70,13 +64,10 @@ exports.updateResume = (req, res) => {
 //ENDPOINT - DELETE DATA IN MONGODB
 exports.deleteResume = (req, res) => {
     const resumeId = req.params.id;
-    console.log(resumeId);
-
     Resume.deleteOne({_id: resumeId}, (err, deletedResume) => {
         if (err) {                
             return res.status(422).send(err);
         }
-        console.log(deletedResume);
         return res.json({status: 'DELETED'});
     })
 }
