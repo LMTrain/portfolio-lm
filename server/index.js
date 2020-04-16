@@ -40,11 +40,12 @@ const secretData = [
 
 //CONNECTING TO DATABASE
 //OPTION 1
-// async () => (await mongoose.connect(config.DB_URI, {useNewUrlParser: true}))();
+// async () => (await mongoose.connect(config.MONGODB_URI, {useNewUrlParser: true}))();
 
 //OPTION 2
-mongoose.connect(config.DB_URI, {useNewUrlParser: true})
-    .then(() => console.log('DB connected!'))
+mongoose.connect(config.MONGODB_URI, {useNewUrlParser: true})
+// mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true})
+    .then(() => console.log('DB connected!', " ", config.MONGODB_URI))
     .catch(err => console.error(err));
 //CONNECTION COMPLETED
 
