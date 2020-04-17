@@ -32,6 +32,7 @@ exports.getResumeById = (req, res) => {
 exports.saveResume = (req, res) => {
     const resumeData = req.body;   
     const userId = req.user && req.user.sub;
+    const resume = new Resume(resumeData);
     resume.userId = userId;
 
     resume.save((err, createdResume) => {

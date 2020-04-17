@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression')
 const path = require('path');
 const next = require('next');
 const mongoose = require ('mongoose');
@@ -55,8 +56,8 @@ app.prepare()
 .then(() => {
     const server = express();
     //INFORMING SERVER TO USE bodyParser.json AS THE MIDDLEWARE
+    server.use(compression());
     server.use(bodyParser.json());    
-
     server.use('/api/v1/books', bookRoutes);
     server.use('/api/v1/portfolios', porfolioRoutes);
     server.use('/api/v1/resumes', resumeRoutes);
