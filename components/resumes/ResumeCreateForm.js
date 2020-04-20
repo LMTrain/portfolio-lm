@@ -9,8 +9,7 @@ import moment from 'moment';
 const validateInputs = (values) => {
   let errors = {};
 
-  Object.entries(values).forEach(([key, value]) => {    
-    // console.log(key);
+  Object.entries(values).forEach(([key, value]) => { 
     //debugger
     if(!values[key] && key !== 'endDate') {
       errors[key] = `Field ${key} is required!`;

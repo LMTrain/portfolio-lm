@@ -20,7 +20,6 @@ export default class MyApp extends App {
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
-        // console.log(user);
 
         const isSiteOwner = user && user[process.env.NAMESPACE + '/role'] === 'siteOwner';
 
@@ -30,9 +29,6 @@ export default class MyApp extends App {
         // if (user) {
         //     isAuthenticated = true;
         // } IS THESAME AS THE BELOW LINE
-
-        // console.log("isAuthenticated :", isAuthenticated)
-        // console.log("THIS IS THE USER :", user);
 
         return { pageProps, auth }
     }

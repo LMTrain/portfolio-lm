@@ -138,7 +138,6 @@ exports.deleteBlog = (req, res) => {
 //     const blogData = req.body;
    
 //     Blog.findById(blogId, (err, foundBlog) => {
-//         console.log("YES YES YES---", foundBlog);
 //         if (err) {
 //             return res.status(422).send(err);
 //         }

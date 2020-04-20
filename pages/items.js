@@ -27,30 +27,24 @@ class items extends React.Component {
         for ( var i = 0; i < 46; i++) {
             if (i === 20){
                 this.renderPosts(); 
-            }else{
-                // console.log(items.items[i])
+            }else{            
                 // posts.push({"itemId": items.items[i].itemId, "parentItemId": items.items[i].parentItemId, "name": items.items[i].name, "salePrice": items.items[i].salePrice, "shortDescription": items.items[i].shortDescription, "largeImage": items.items[i].largeImage, "productUrl": items.items[i].productUrl, "customerRating": items.items[i].customerRating})
-                // this.renderItems();
-                // console.log(posts)         
+                // this.renderItems();             
             }
         }
                
     }
-    // renderItems(itemArray) {
-    //     // console.log([itemArray])
-    //     console.log("THIS IS POSTS :", itemArray)
+    // renderItems(itemArray) {    
+    //  
     //     // return itemArray.map((post) => {
-    //     //     console.log(post)
     //     //     return (
     //     //         <li>{post.name}</li>
     //     //     )
     //     // })
     // }
 
-    renderPosts() {       
-        // console.log(posts[0].name)
-        // return posts.map((post) => {
-        //     console.log(post[0])
+    renderPosts() { 
+        // return posts.map((post) => {      
         //     return (
         //         <li>{post[0].name}</li>
         //     )
@@ -65,10 +59,8 @@ class items extends React.Component {
                 ))} */}
     }
 
-    // renderPosts(posts) {
-    //     console.log("THIS IS POSTS :", posts)
-    //     return posts.map((post) => {
-    //         console.log(post)
+    // renderPosts(posts) { 
+    //     return posts.map((post) => {  
     //         return (
     //             <li>{post.title}</li>
     //         )

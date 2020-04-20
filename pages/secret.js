@@ -10,8 +10,7 @@ class Secret extends React.Component {
 
     static async getInitialProps({req}) {
         const anotherSecretData =  await getSecretData();
-
-        // console.log(anotherSecretData);
+   
 
         return { anotherSecretData};        
     } 

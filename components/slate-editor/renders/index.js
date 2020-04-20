@@ -51,10 +51,7 @@ const onClickBlock = (event, type, editor) => {
     const isType = value.blocks.some(block => {
       return !!document.getClosest(block.key, parent => parent.type == type)
     })
-
-    // console.log('isList', isList);
-    // console.log('isType', isType);
-
+   
     if (isList && isType) {
       editor
         .setBlocks(DEFAULT_NODE)
